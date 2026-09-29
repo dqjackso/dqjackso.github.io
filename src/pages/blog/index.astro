@@ -3,7 +3,6 @@ import Base from '../../components/Base.astro';
 import { formatDate, getPosts, tagSlug } from '../../lib/posts';
 
 const posts = await getPosts();
-const published = posts.filter((post) => !post.data.sample);
 const description = 'Blog by Derek Jackson.';
 ---
 
@@ -12,13 +11,7 @@ const description = 'Blog by Derek Jackson.';
     <p class="kicker">Notes</p>
     <h1>Blog</h1>
     <p class="lede">
-      {
-        published.length > 0
-          ? 'Notes and essays.'
-          : posts.length > 0
-            ? 'Essays will live here. The post below is a sample of the format — mathematics, a chart, and code — and is not a piece of writing by Derek.'
-            : 'Essays will live here.'
-      }
+      {posts.length > 0 ? 'Notes and essays.' : 'Essays will live here.'}
     </p>
   </header>
 
@@ -29,7 +22,6 @@ const description = 'Blog by Derek Jackson.';
           <article>
             <p class="meta">
               <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-              {post.data.sample && <span class="badge">Sample</span>}
             </p>
             <h2>
               <a href={`/blog/${post.id}/`}>{post.data.title}</a>

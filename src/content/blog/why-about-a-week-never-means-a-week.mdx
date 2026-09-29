@@ -1,0 +1,116 @@
+---
+title: "Why \"About a Week\" Never Means a Week"
+description: "Why project estimates keep missing, from bathrooms to product launches, and a simple time-plus-uncertainty method (with a free Google Sheet) to fix it."
+pubDate: 2026-09-29
+tags: ["estimation", "planning", "project-management", "decision-making", "ai"]
+draft: false
+---
+
+Here is a small puzzle. Ask someone how long a project will take, whether it's a bedroom repaint, a wedding, or a product launch, and they'll give you a number. Sometimes it finishes on time. Rarely does it finish *early*. And pretty often it runs late, sometimes enough to make everyone go quiet on the next call.
+
+If our guesses were just noisy, like a bathroom scale that reads a pound high one morning and a pound low the next, the misses would go both ways. But they don't. They most often lean late. Why?
+
+I've thought about this more than is healthy. (I eventually built a spreadsheet about it, so calibrate accordingly.) At my former company, Cyber-Dive, one lesson kept coming back: estimating a project is hard. And careful, smart people still get it wrong.
+
+The best answer I've found comes from a short, practical essay by Jacob Kaplan-Moss, [My Software Estimation Technique](https://jacobian.org/2021/may/25/my-estimation-technique/). He wrote it for software teams in 2021. But it applies to nearly any project, and it starts with what a single number leaves out.
+
+## A single number is a quiet lie
+
+Jacob's central idea is that a real estimate has two parts: how long you *expect* something to take, and how *uncertain* you are about that.
+
+His example: with a deadline 14 days away, "that'll take 10 days" lets you relax. But "10 to 15 days" should make you nervous, because the deadline sits inside the range.
+
+So a single number sounds confident mostly because it hides the second part. And once you start asking about that second part, the puzzle starts to crack open.
+
+## Here's what's really going on
+
+A task you expect to take five days might, on a lucky run, take four. But it won't take zero; the floor is close by. The same task can take ten days, or twenty, if the wrong thing turns up. There's no hard ceiling at all.
+
+Which means the risk is lopsided, with most surprises on the late side. And Jacob's method is built around that. He says, roughly, that finishing early is never the problem, and the best case rarely shows up anyway. So instead of best and worst cases, he estimates the **expected** case and the **worst** case, and you spend your attention where the danger usually is.
+
+So how do you actually do it?
+
+## The method, in plain terms
+
+Jacob uses five steps. I've kept his scales exactly and translated the vocabulary beyond software.
+
+**1. Break the work down and size each piece.** Big, vague chunks are where surprises hide, so keep splitting until each piece is concrete. Then size each one:
+
+| Size | Expected time |
+| --- | --- |
+| Small | 1 day |
+| Medium | 3 days |
+| Large | 1 week (5 days) |
+| Extra-large | 2 weeks (10 days) |
+
+Two rules apply. Use real calendar time, including interruptions and everything else on your plate, not eight perfect hours a day. And aim for what you honestly *expect*: not the lucky-day number, and not a padded one. Done well, most pieces usually come out Small or Medium.
+
+**2. Rate how uncertain each piece is.** But size doesn't tell you how nervous to be, so each piece also gets an "if it goes sideways" multiplier:
+
+| Uncertainty | Multiplier |
+| --- | --- |
+| Low | 1.1 |
+| Moderate | 1.5 |
+| High | 2.0 |
+| Extreme | 5.0 |
+
+So a Medium piece with High uncertainty means "I think 3 days, but it could take up to 6."
+
+**3. Add it up.** Add up the expected times, then add up the worst-case times. The gap between the two totals is your risk, and it shows you which piece is causing it.
+
+**4. Refine if the range is too wide.** If the range is too wide to plan around, find the piece causing most of the uncertainty and spend a fixed, limited amount of time shrinking it. Jacob suggests research, a "spike" (a quick, often throwaway experiment), or just starting the work for a week or two to see what you learn. Outside software, a spike might be calling someone who's done the job, or opening a small patch of wall before committing to the whole room.
+
+**5. Track how you actually did.** And finally, write down real times and compare them with your estimates. That's how you improve, and it's why Jacob says to pick your scales and stick with them. If "Low" means something different every month, you can't learn from your own history.
+
+That's the method. But step 3 quietly tells you something you didn't ask, and it's easiest to see in an example.
+
+## A worked example: the bathroom
+
+Imagine you're redoing a small bathroom. You break it into five pieces:
+
+| Piece | Size | Uncertainty | Expected (days) | Worst case (days) | Gap (days) |
+| --- | --- | --- | --- | --- | --- |
+| Tear out old tile | Small | Low | 1 | 1.1 | 0.1 |
+| Swap the vanity | Medium | Moderate | 3 | 4.5 | 1.5 |
+| Plumbing behind the wall | Medium | Extreme | 3 | 15 | 12 |
+| Tile floor and shower | Large | Moderate | 5 | 7.5 | 2.5 |
+| Paint and fixtures | Small | High | 1 | 2 | 1 |
+| **Total** | | | **13** | **30.1** | **17.1** |
+
+So the honest answer is "about 13 days, possibly up to 30." That's less satisfying than "two and a half weeks," but much more useful.
+
+Now look at the gap column. The plumbing contributes 12 of the 17.1 days, about 70% of the project's risk, because nobody knows what's behind that wall until it's open.
+
+And this is the payoff. The method doesn't just give you a range; it tells you where to point your worry. Padding every piece spreads your caution evenly across work that mostly doesn't need it. So you make the project safer by opening a small section of that wall early, on purpose, before the tile work is scheduled.
+
+That lesson is as old as projects themselves. But lately there's a new reason the numbers are shifting.
+
+## Why this matters more right now
+
+AI tools are changing how long some kinds of work take. Drafting, research summaries, code, and first-pass designs can go faster for some people on some tasks. But how much faster varies a lot, and I won't pretend there's a tidy number.
+
+In the method's terms, AI can shrink *expected* time. But it doesn't automatically shrink *uncertainty*. Unclear goals, unfamiliar territory, and whether the output is right are all still there. And a new tool can add unknowns of its own, because now you're checking work you didn't do.
+
+Here's a hypothetical. Say a piece would normally be Medium with Moderate uncertainty: 3 days expected, 4.5 days worst case. With a tool you've never used for this kind of work, you might honestly rate it Small with Extreme uncertainty: 1 day expected, 5 days worst case. The expected time fell by two-thirds. But the worst case went *up* half a day. So if you report only the expected number, you'll announce a speedup your risk doesn't support.
+
+That doesn't mean avoid the tools. It means a few habits matter more:
+
+- **Keep the scale fixed; let pieces move between buckets.** Don't redefine "Small" because things got faster. Just rate more pieces as Small, and your past records stay comparable.
+- **Count unfamiliarity as uncertainty.** A new tool, a new contractor, a new venue: all of it counts.
+- **Take step 5 seriously.** Tracking actuals shows whether a tool really saves you time.
+- **Use cheap experiments.** A tool that makes rough drafts cheaper also makes Jacob's step 4 cheaper.
+
+Faster and more predictable are not the same thing. And estimating is about predictability, which is why I wanted a tool that makes this part easy.
+
+## Get the sheet
+
+So I built a Google Sheet that implements Jacob's procedure. It has two tabs:
+
+- **Estimate**, one row per piece. You confirm each row is the smallest actionable chunk, then choose complexity and uncertainty. It calculates expected days, worst-case days, and each row's spread (the gap) and share of the total. Summary cells show expected and worst-case totals, overall spread, rows that still need breaking down, and the top spread driver. And an Actual days column lets you compare outcomes to your range over time.
+- **Instructions**, with the steps and scales, credited to Jacob's post.
+
+Jacob wrote his method for software. But you can use the sheet for any project you can break into pieces.
+
+**[Open the Project Time Estimator sheet](https://docs.google.com/spreadsheets/d/1ewnhN84LQooHmjeBQsieVPZN7EViam-6XoUkHbHDFpc/edit?usp=sharing)**, then choose **File > Make a copy** to save your own editable version.
+
+Then try it on your next launch, move, grant proposal, or bathroom. Give people a range instead of a single number. And go find the piece driving your risk before it finds you. If you track your actuals, I'd love to hear what you learn. And thanks to Jacob Kaplan-Moss for a method simple enough to use and rigorous enough to trust.
