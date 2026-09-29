@@ -11,6 +11,8 @@
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
   --measure: 70ch;
   --rail: minmax(11rem, 16rem);
+  --gutter: 1.25rem;
+  --radius: 14px;
   --shell: min(76rem, calc(100% - 2 * clamp(1.25rem, 3vw, 2.75rem)));
   color-scheme: light;
   background: var(--bg);
@@ -126,13 +128,13 @@ a:hover {
 .site-footer {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem 1.5rem;
   flex-wrap: wrap;
 }
 
 .site-header {
-  padding: 1.35rem 0 1rem;
+  padding: 0.85rem 0;
   margin-bottom: clamp(2.75rem, 7vw, 5rem);
   border-bottom: 1px solid var(--line);
 }
@@ -140,10 +142,11 @@ a:hover {
 .wordmark {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.35rem;
+  font-size: 1.7rem;
   letter-spacing: -0.03em;
   text-decoration: none;
   color: inherit;
+  line-height: 1;
 }
 
 .wordmark:hover {
@@ -152,9 +155,18 @@ a:hover {
 
 .nav {
   display: flex;
-  align-items: baseline;
-  gap: 1.15rem;
-  font-size: 0.98rem;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 1.2rem;
+}
+
+.nav a,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.75rem;
 }
 
 .nav a {
@@ -168,13 +180,11 @@ a:hover {
 }
 
 .theme-toggle {
-  min-width: 3.4rem;
-  padding: 0;
+  min-width: 4.5rem;
   border: 0;
   background: none;
   color: inherit;
   font: inherit;
-  text-align: right;
   cursor: pointer;
 }
 
@@ -196,10 +206,20 @@ a:hover {
 
 .site-footer {
   margin-top: clamp(4rem, 10vw, 7rem);
-  padding: 1.25rem 0 2.5rem;
+  padding: 1.35rem 0 2.5rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-footer .socials a {
+  color: var(--ink);
 }
 
 .kicker {
@@ -214,8 +234,8 @@ a:hover {
 .hero h1 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(3.5rem, 11vw, 8.25rem);
-  line-height: 0.86;
+  font-size: clamp(3.75rem, 12vw, 6.75rem);
+  line-height: 0.88;
   letter-spacing: -0.045em;
   font-optical-sizing: auto;
 }
@@ -241,7 +261,8 @@ a:hover {
   position: relative;
   overflow: hidden;
   background: #c9bfb2;
-  outline: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .frame picture {
@@ -257,8 +278,9 @@ a:hover {
   object-fit: cover;
 }
 
-.frame-hero {
-  width: min(100%, 36rem);
+.frame-hero,
+.frame-tile {
+  width: 100%;
   aspect-ratio: 4 / 5;
 }
 
@@ -266,68 +288,63 @@ a:hover {
   object-position: center 22%;
 }
 
-.frame-about {
-  width: 14rem;
-  aspect-ratio: 4 / 5;
-}
-
 .frame-about img {
   object-position: center 28%;
 }
 
-.frame-editorial {
-  width: min(100%, 40rem);
-  aspect-ratio: 2 / 3;
-}
-
 .frame-editorial img {
-  object-position: center 42%;
-}
-
-.frame-friends {
-  width: min(100%, 22rem);
-  aspect-ratio: 1039 / 1339;
+  object-position: center 24%;
 }
 
 .frame-friends img {
-  object-position: center 35%;
+  object-position: center 30%;
 }
 
-.hero-figure,
-.editorial-figure {
-  margin-top: clamp(2.5rem, 6vw, 4rem);
+.home-hero {
+  display: grid;
+  gap: var(--gutter);
+}
+
+.hero-figure {
+  margin: 0;
 }
 
 .hero-figure figcaption,
-.editorial-figure figcaption {
+.photo-row figcaption {
   margin-top: 0.7rem;
-  max-width: 40rem;
+  min-height: 2.9em;
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.45;
 }
 
-.gallery {
-  margin-top: clamp(2.75rem, 6vw, 4.5rem);
+.photo-row {
+  display: grid;
+  gap: var(--gutter);
+  margin-top: clamp(2.75rem, 5vw, 4.25rem);
 }
 
-.side-column {
-  display: contents;
+.photo-row figure {
+  margin: 0;
+  min-width: 0;
 }
 
-.about-copy {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+.about-block {
+  margin-top: clamp(2.75rem, 5vw, 4.25rem);
+  max-width: var(--measure);
 }
 
-.friends-figure {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+.about-block h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 4.6vw, 3.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 0.9rem;
 }
 
-.friends-figure figcaption {
-  margin-top: 0.7rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
+.caption-spacer {
+  visibility: hidden;
 }
 
 .socials {
@@ -385,7 +402,7 @@ figcaption,
 .post-head h1 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(3.1rem, 8vw, 5.75rem);
+  font-size: clamp(4rem, 8.5vw, 6.75rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   text-wrap: balance;
@@ -394,7 +411,7 @@ figcaption,
 .page-head h2 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(2.15rem, 5vw, 3.25rem);
+  font-size: clamp(2.7rem, 5.2vw, 4rem);
   line-height: 1;
   letter-spacing: -0.035em;
 }
@@ -432,7 +449,7 @@ figcaption,
 .skill-row h3 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.65rem;
+  font-size: 2.15rem;
   letter-spacing: -0.03em;
   line-height: 1.15;
 }
@@ -552,7 +569,7 @@ figcaption,
 .post-list h2 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(2.35rem, 4.4vw, 3.25rem);
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin: 0.45rem 0 0.7rem;
@@ -643,7 +660,7 @@ figcaption,
 .prose h2 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.85rem;
+  font-size: 2.4rem;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-top: 2.1em;
@@ -652,7 +669,7 @@ figcaption,
 .prose h3 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.35rem;
+  font-size: 1.8rem;
   line-height: 1.25;
   margin-top: 1.8em;
 }
@@ -789,70 +806,24 @@ figcaption,
 }
 
 @media (min-width: 900px) {
-  .home-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(17rem, 26rem);
-    column-gap: clamp(1rem, 3vw, 2.75rem);
-    align-items: end;
+  :root {
+    --gutter: 1.5rem;
   }
 
-  .hero-figure {
-    margin-top: 0;
-    margin-left: -1.25rem;
+  .home-hero,
+  .photo-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: var(--gutter);
   }
 
-  .frame-hero {
-    width: 100%;
+  .photo-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
   }
 
   .hero h1 {
-    font-size: clamp(4.4rem, 7.6vw, 7.6rem);
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: minmax(18rem, 1.15fr) minmax(20rem, 42rem);
-    column-gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: center;
-  }
-
-  .side-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.35rem;
-    min-width: 0;
-  }
-
-  .editorial-figure {
-    margin-top: 0;
-  }
-
-  .frame-editorial {
-    width: 100%;
-  }
-
-  .friends-figure {
-    order: -1;
-    align-self: flex-end;
-    width: min(100%, 22rem);
-    margin-top: 0;
-  }
-
-  .about-copy {
-    order: 0;
-    max-width: var(--measure);
-    margin-top: 0;
-  }
-
-  .frame-about {
-    order: 1;
-    width: 13rem;
-  }
-
-  .links-block {
-    order: 2;
-    margin-top: 0;
+    font-size: clamp(4.8rem, 6.4vw, 6.75rem);
   }
 
   .page-head,
@@ -939,11 +910,20 @@ figcaption,
     gap: 0.2rem;
   }
 
-  .frame-about {
-    width: min(16rem, 100%);
+  .nav {
+    font-size: 1.05rem;
+  }
+
+  .wordmark {
+    font-size: 1.45rem;
   }
 
   .hero h1 {
-    font-size: clamp(3.15rem, 16vw, 4.6rem);
+    font-size: clamp(3.5rem, 14vw, 4.75rem);
+  }
+
+  .page-head h1,
+  .post-head h1 {
+    font-size: clamp(3.4rem, 12vw, 4.4rem);
   }
 }

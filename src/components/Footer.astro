@@ -1,10 +1,14 @@
 ---
+import SocialLinks from './SocialLinks.astro';
 import { site } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <p>© {year} {site.name}</p>
-  <a href="/rss.xml">RSS</a>
+  <div class="footer-meta">
+    <p>© {year} {site.name}</p>
+    <a href="/rss.xml">RSS</a>
+  </div>
+  <SocialLinks links={site.socials} />
 </footer>

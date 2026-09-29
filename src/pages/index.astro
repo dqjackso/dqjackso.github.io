@@ -1,7 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../components/Base.astro';
-import SocialLinks from '../components/SocialLinks.astro';
 import { photos } from '../data/photos';
 import { site } from '../data/site';
 import { getSocialImage } from '../lib/social-image';
@@ -18,6 +17,12 @@ const person = {
   image: imageUrl,
   sameAs: site.sameAs,
 };
+
+const tiles = [
+  { photo: photos.about, className: 'frame-about' },
+  { photo: photos.editorial, className: 'frame-editorial' },
+  { photo: photos.friends, className: 'frame-friends' },
+];
 ---
 
 <Base
@@ -29,90 +34,62 @@ const person = {
   imageHeight={social.attributes.height}
   jsonLd={person}
 >
-  <div class="home-hero">
-  <section class="hero">
-    <h1>
-      <span>Derek</span>
-      <span class="surname">Jackson</span>
-    </h1>
-    <p class="tagline">{site.tagline}</p>
-  </section>
-
-  <figure class="hero-figure">
-    <div class="frame frame-hero">
-      <Picture
-        src={photos.hero.src}
-        alt={photos.hero.alt}
-        widths={[360, 520, 704]}
-        sizes="(min-width: 900px) 26rem, (min-width: 640px) 36rem, calc(100vw - 2.5rem)"
-        formats={['avif', 'webp']}
-        fallbackFormat="jpeg"
-        quality={80}
-        layout="constrained"
-        width={704}
-        priority
-      />
+  <section class="home-hero">
+    <div class="hero">
+      <h1>
+        <span>Derek</span>
+        <span class="surname">Jackson</span>
+      </h1>
+      <p class="tagline">{site.tagline}</p>
     </div>
-    <figcaption>{photos.hero.caption}</figcaption>
-  </figure>
-  </div>
-
-  <div class="gallery">
-  <figure class="editorial-figure">
-    <div class="frame frame-editorial">
-      <Picture
-        src={photos.editorial.src}
-        alt={photos.editorial.alt}
-        widths={[480, 704, 1056, 1320]}
-        sizes="(min-width: 900px) 36rem, calc(100vw - 2.5rem)"
-        formats={['avif', 'webp']}
-        fallbackFormat="jpeg"
-        quality={72}
-        layout="constrained"
-        width={1320}
-      />
-    </div>
-    <figcaption>{photos.editorial.caption}</figcaption>
-  </figure>
-
-  <div class="side-column">
-  <div class="frame frame-about">
-      <Picture
-        src={photos.about.src}
-        alt={photos.about.alt}
-        widths={[256, 384, 560]}
-        sizes="(min-width: 900px) 13rem, (min-width: 640px) 14rem, 16rem"
-        formats={['avif', 'webp']}
-        fallbackFormat="jpeg"
-        quality={75}
-        layout="constrained"
-        width={560}
-      />
-    </div>
-    <div class="about-copy">
-      <h2 class="kicker">About</h2>
-      <p class="bio">{site.bio}</p>
-    </div>
-    <figure class="friends-figure">
-      <div class="frame frame-friends">
+    <figure class="hero-figure">
+      <div class="frame frame-hero">
         <Picture
-          src={photos.friends.src}
-          alt={photos.friends.alt}
-          widths={[480, 720, 1039]}
-          sizes="(min-width: 900px) 22rem, calc(100vw - 2.5rem)"
+          src={photos.hero.src}
+          alt={photos.hero.alt}
+          widths={[360, 520, 704]}
+          sizes="(min-width: 900px) 36rem, calc(100vw - 2.5rem)"
           formats={['avif', 'webp']}
           fallbackFormat="jpeg"
-          quality={75}
+          quality={80}
           layout="constrained"
-          width={1039}
+          width={704}
+          priority
         />
       </div>
-      <figcaption>{photos.friends.caption}</figcaption>
+      <figcaption>{photos.hero.caption}</figcaption>
     </figure>
-  <section class="section links-block">
-    <h2 class="kicker">Links</h2>
-    <SocialLinks links={site.socials} />
   </section>
+
+  <div class="photo-row">
+    {
+      tiles.map((tile) => (
+        <figure>
+          <div class:list={['frame', 'frame-tile', tile.className]}>
+            <Picture
+              src={tile.photo.src}
+              alt={tile.photo.alt}
+              widths={[480, 720, 960]}
+              sizes="(min-width: 900px) 24rem, calc(100vw - 2.5rem)"
+              formats={['avif', 'webp']}
+              fallbackFormat="jpeg"
+              quality={75}
+              layout="constrained"
+              width={960}
+            />
+          </div>
+          {'caption' in tile.photo && tile.photo.caption ? (
+            <figcaption>{tile.photo.caption}</figcaption>
+          ) : (
+            <figcaption class="caption-spacer" aria-hidden="true" />
+          )}
+        </figure>
+      ))
+    }
   </div>
-  </div>
+
+  <section class="about-block">
+    <h2>About</h2>
+    <p class="bio">{site.bio}</p>
+  </section>
 </Base>
