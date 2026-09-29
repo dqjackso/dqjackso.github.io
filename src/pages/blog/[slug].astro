@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../components/Base.astro';
+import ShareLinks from '../../components/ShareLinks.astro';
 import { photos } from '../../data/photos';
 import { site } from '../../data/site';
 import { getSocialImage } from '../../lib/social-image';
@@ -57,7 +58,7 @@ const jsonLd = {
   tags={post.data.tags}
   jsonLd={jsonLd}
 >
-  <article class="post">
+  <article class="post" data-share-url={canonical.href} data-share-title={post.data.title}>
     <header class="post-head">
       <p class="kicker">Blog</p>
       <h1>{post.data.title}</h1>
@@ -76,9 +77,11 @@ const jsonLd = {
           </ul>
         )
       }
+      <ShareLinks url={canonical.href} title={post.data.title} />
     </header>
     <div class="prose">
       <Content />
     </div>
+    <ShareLinks url={canonical.href} title={post.data.title} />
   </article>
 </Base>

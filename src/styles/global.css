@@ -364,6 +364,52 @@ a:hover {
   display: block;
 }
 
+.share-bar {
+  margin-top: 1.25rem;
+}
+
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.share a,
+.share button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.share a:hover,
+.share button:hover {
+  color: var(--accent-ink);
+}
+
+.share svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  display: block;
+}
+
+.share-note {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .section {
   margin-top: clamp(2.75rem, 6vw, 4.25rem);
 }
@@ -901,7 +947,9 @@ figcaption,
   .page-head .clearance,
   .post-head .dek,
   .post-head .meta,
-  .post-head .tags {
+  .post-head .tags,
+  .post-head .share-bar,
+  .post > .share-bar {
     grid-column: 2;
     max-width: var(--measure);
   }
