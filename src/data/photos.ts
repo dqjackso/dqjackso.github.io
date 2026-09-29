@@ -13,7 +13,6 @@ export const photos = {
   hero: {
     src: headshot,
     alt: 'Derek Jackson, with short brown hair, a beard, and glasses, wearing a dark suit, white shirt, and navy tie, standing indoors in front of a bright window.',
-    caption: 'Derek Jackson in a dark suit and navy tie.',
     position: 'center 22%',
   },
   about: {
@@ -24,13 +23,11 @@ export const photos = {
   editorial: {
     src: aspens,
     alt: 'Derek Jackson standing in tall grass beneath aspen trees, wearing a light shirt and khaki pants, with sunlight flaring through the leaves.',
-    caption: 'Standing in tall grass under aspen trees.',
     position: 'center 38%',
   },
   friends: {
     src: friends,
     alt: 'Derek Jackson on the left, wearing glasses, a beard, and a gray puffer jacket, smiling indoors with two other people. The person beside him wears a tan jacket; the person on the right wears a black jacket.',
-    caption: 'With friends, indoors.',
     position: 'center center',
   },
 };
