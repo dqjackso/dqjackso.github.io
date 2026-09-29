@@ -1,4 +1,6 @@
 ---
+import { photos } from '../data/photos';
+import { getSocialImage } from '../lib/social-image';
 import { site } from '../data/site';
 
 interface Props {
@@ -6,6 +8,8 @@ interface Props {
   description: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   ogType?: 'website' | 'article';
   published?: Date;
   modified?: Date;
@@ -17,8 +21,10 @@ interface Props {
 const {
   title,
   description,
-  image = site.ogImage,
-  imageAlt = site.ogImageAlt,
+  image: imageProp,
+  imageAlt: imageAltProp,
+  imageWidth,
+  imageHeight,
   ogType = 'website',
   published,
   modified,
@@ -26,6 +32,12 @@ const {
   noindex = false,
   jsonLd,
 } = Astro.props;
+
+const social = await getSocialImage();
+const image = imageProp ?? social.src;
+const imageAlt = imageAltProp ?? photos.hero.alt;
+const ogWidth = imageWidth ?? (imageProp ? undefined : social.attributes.width);
+const ogHeight = imageHeight ?? (imageProp ? undefined : social.attributes.height);
 
 const documentTitle = title === site.name ? site.name : `${title} · ${site.name}`;
 const pathname = Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname;
@@ -49,8 +61,8 @@ const json = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
 <meta property="og:url" content={canonical.href} />
 <meta property="og:image" content={imageUrl.href} />
 <meta property="og:image:alt" content={imageAlt} />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+{ogWidth && <meta property="og:image:width" content={String(ogWidth)} />}
+{ogHeight && <meta property="og:image:height" content={String(ogHeight)} />}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={documentTitle} />
 <meta name="twitter:description" content={description} />

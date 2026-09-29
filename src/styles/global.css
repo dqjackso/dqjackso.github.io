@@ -236,25 +236,74 @@ a:hover {
   text-wrap: balance;
 }
 
-.plate {
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: #c9bfb2;
+  outline: 1px solid var(--line);
+}
+
+.frame picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.frame-hero {
+  width: min(100%, 36rem);
+  aspect-ratio: 4 / 5;
+}
+
+.frame-hero img {
+  object-position: center 22%;
+}
+
+.frame-about {
+  width: 14rem;
+  aspect-ratio: 4 / 5;
+}
+
+.frame-about img {
+  object-position: center 28%;
+}
+
+.frame-editorial {
+  width: min(100%, 40rem);
+  aspect-ratio: 2 / 3;
+}
+
+.frame-editorial img {
+  object-position: center 42%;
+}
+
+.hero-figure,
+.editorial-figure {
   margin-top: clamp(2.5rem, 6vw, 4rem);
 }
 
-.plate img {
-  display: block;
-  width: 100%;
-  height: auto;
-  outline: 1px solid var(--line);
-  background: #c9bfb2;
+.hero-figure figcaption,
+.editorial-figure figcaption {
+  margin-top: 0.7rem;
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
 }
 
-.plate figcaption {
-  margin-top: 0.7rem;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.about {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.15rem 2rem;
+  align-items: start;
+  max-width: 46rem;
+  margin-top: clamp(2.75rem, 6vw, 4.25rem);
 }
 
 .section {
@@ -623,6 +672,15 @@ figcaption,
   .skill-row {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .frame-about {
+    width: min(16rem, 100%);
   }
 
   .hero h1 {

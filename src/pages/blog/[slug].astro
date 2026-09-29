@@ -1,7 +1,9 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../components/Base.astro';
+import { photos } from '../../data/photos';
 import { site } from '../../data/site';
+import { getSocialImage } from '../../lib/social-image';
 import { formatDate, getPosts, tagSlug, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -19,8 +21,9 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const canonical = new URL(`/blog/${post.id}/`, Astro.site);
-const image = post.data.image ?? site.ogImage;
-const imageAlt = post.data.imageAlt ?? site.ogImageAlt;
+const social = await getSocialImage();
+const image = post.data.image ?? social.src;
+const imageAlt = post.data.imageAlt ?? photos.hero.alt;
 const modified = post.data.updatedDate ?? post.data.pubDate;
 
 const jsonLd = {

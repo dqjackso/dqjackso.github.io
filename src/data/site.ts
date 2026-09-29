@@ -22,15 +22,6 @@ export const site = {
   description:
     'An out-of-the-box thought leader, who is mathematically rigorous and technically proficient, but makes concepts approachable in a human centered way.',
   bio: 'PLACEHOLDER: bio from Derek',
-  portrait: {
-    src: '/placeholders/portrait.svg',
-    alt: 'PLACEHOLDER: portrait of Derek Jackson',
-    caption: 'PLACEHOLDER: portrait',
-    width: 1600,
-    height: 1066,
-  },
-  ogImage: '/og.png',
-  ogImageAlt: 'Derek Jackson',
   socials: [
     { label: 'GitHub', placeholder: 'PLACEHOLDER: GitHub profile URL' },
     { label: 'LinkedIn', placeholder: 'PLACEHOLDER: LinkedIn profile URL' },
