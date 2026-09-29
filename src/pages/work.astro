@@ -33,15 +33,17 @@ const description =
     {
       experience.map((job) => (
         <li>
-          <p class="dates">{job.dates}</p>
-          <div>
-            <h3>{job.title}</h3>
-            {job.descriptor && <p class="descriptor">{job.descriptor}</p>}
+          <div class="rail">
+            <p class="dates">{job.dates}</p>
             <p class="org">
               {job.org}
               {job.place && <span class="place"> · {job.place}</span>}
             </p>
             {job.former && <p class="badge former">Former company</p>}
+          </div>
+          <div class="role-body">
+            <h3>{job.title}</h3>
+            {job.descriptor && <p class="descriptor">{job.descriptor}</p>}
             {job.groups.map((group) => (
               <div class="group">
                 {group.label && <h4 class="group-label">{group.label}</h4>}

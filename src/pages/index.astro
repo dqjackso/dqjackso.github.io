@@ -29,6 +29,7 @@ const person = {
   imageHeight={social.attributes.height}
   jsonLd={person}
 >
+  <div class="home-hero">
   <section class="hero">
     <h1>
       <span>Derek</span>
@@ -43,7 +44,7 @@ const person = {
         src={photos.hero.src}
         alt={photos.hero.alt}
         widths={[360, 520, 704]}
-        sizes="(min-width: 640px) 36rem, calc(100vw - 2.5rem)"
+        sizes="(min-width: 900px) 26rem, (min-width: 640px) 36rem, calc(100vw - 2.5rem)"
         formats={['avif', 'webp']}
         fallbackFormat="jpeg"
         quality={80}
@@ -54,14 +55,16 @@ const person = {
     </div>
     <figcaption>{photos.hero.caption}</figcaption>
   </figure>
+  </div>
 
+  <div class="gallery">
   <figure class="editorial-figure">
     <div class="frame frame-editorial">
       <Picture
         src={photos.editorial.src}
         alt={photos.editorial.alt}
         widths={[480, 704, 1056, 1320]}
-        sizes="(min-width: 800px) 40rem, calc(100vw - 2.5rem)"
+        sizes="(min-width: 900px) 36rem, calc(100vw - 2.5rem)"
         formats={['avif', 'webp']}
         fallbackFormat="jpeg"
         quality={72}
@@ -72,13 +75,13 @@ const person = {
     <figcaption>{photos.editorial.caption}</figcaption>
   </figure>
 
-  <section class="about">
-    <div class="frame frame-about">
+  <div class="side-column">
+  <div class="frame frame-about">
       <Picture
         src={photos.about.src}
         alt={photos.about.alt}
         widths={[256, 384, 560]}
-        sizes="(min-width: 640px) 14rem, 16rem"
+        sizes="(min-width: 900px) 13rem, (min-width: 640px) 14rem, 16rem"
         formats={['avif', 'webp']}
         fallbackFormat="jpeg"
         quality={75}
@@ -86,7 +89,7 @@ const person = {
         width={560}
       />
     </div>
-    <div>
+    <div class="about-copy">
       <h2 class="kicker">About</h2>
       <p class="bio">{site.bio}</p>
     </div>
@@ -96,7 +99,7 @@ const person = {
           src={photos.friends.src}
           alt={photos.friends.alt}
           widths={[480, 720, 1039]}
-          sizes="(min-width: 640px) 22rem, calc(100vw - 2.5rem)"
+          sizes="(min-width: 900px) 22rem, calc(100vw - 2.5rem)"
           formats={['avif', 'webp']}
           fallbackFormat="jpeg"
           quality={75}
@@ -106,10 +109,10 @@ const person = {
       </div>
       <figcaption>{photos.friends.caption}</figcaption>
     </figure>
-  </section>
-
-  <section class="section">
+  <section class="section links-block">
     <h2 class="kicker">Links</h2>
     <SocialLinks links={site.socials} />
   </section>
+  </div>
+  </div>
 </Base>
