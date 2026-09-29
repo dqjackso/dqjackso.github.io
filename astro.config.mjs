@@ -47,6 +47,28 @@ function walkHast(node) {
   }
 }
 
+/** Wide markdown tables scroll inside the article instead of widening the page. */
+function wrapTables() {
+  return (tree) => wrapTableNodes(tree);
+}
+
+function wrapTableNodes(node) {
+  if (!node || typeof node !== 'object' || !Array.isArray(node.children)) return;
+  for (let i = 0; i < node.children.length; i += 1) {
+    const child = node.children[i];
+    if (child?.type === 'element' && child.tagName === 'table') {
+      node.children[i] = {
+        type: 'element',
+        tagName: 'div',
+        properties: { className: ['table-scroll'] },
+        children: [child],
+      };
+    } else {
+      wrapTableNodes(child);
+    }
+  }
+}
+
 export default defineConfig({
   site: 'https://dqjackso.github.io',
   output: 'static',
@@ -54,16 +76,13 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) =>
-        !page.includes('/blog/sample-') &&
-        !page.includes('/rss.xml') &&
-        !page.endsWith('/404/'),
+      filter: (page) => !page.includes('/rss.xml') && !page.endsWith('/404/'),
     }),
   ],
   markdown: {
     processor: unified({
       remarkPlugins: [unescapeMdxBraces, remarkMath],
-      rehypePlugins: [rehypeKatex],
+      rehypePlugins: [rehypeKatex, wrapTables],
     }),
     shikiConfig: {
       themes: {

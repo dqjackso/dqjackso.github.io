@@ -13,7 +13,6 @@ const blog = defineCollection({
       tags: z.array(z.string()).default([]),
       image: z.string().optional(),
       imageAlt: z.string().optional(),
-      sample: z.boolean().default(false),
       draft: z.boolean().default(false),
     })
     .refine((data) => !data.image || Boolean(data.imageAlt), {

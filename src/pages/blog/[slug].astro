@@ -55,25 +55,15 @@ const jsonLd = {
   published={post.data.pubDate}
   modified={modified}
   tags={post.data.tags}
-  noindex={post.data.sample}
   jsonLd={jsonLd}
 >
   <article class="post">
-    {
-      post.data.sample && (
-        <p class="banner">
-          Sample post. This page demonstrates math, a chart, and code on the site. It is not an
-          article by Derek Jackson.
-        </p>
-      )
-    }
     <header class="post-head">
       <p class="kicker">Blog</p>
       <h1>{post.data.title}</h1>
       <p class="dek">{post.data.description}</p>
       <p class="meta">
         <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-        {post.data.sample && <span class="badge">Sample</span>}
       </p>
       {
         post.data.tags.length > 0 && (

@@ -44,7 +44,6 @@ const description = `Posts tagged ${tag}.`;
           <article>
             <p class="meta">
               <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-              {post.data.sample && <span class="badge">Sample</span>}
             </p>
             <h2>
               <a href={`/blog/${post.id}/`}>{post.data.title}</a>
