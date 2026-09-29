@@ -51,7 +51,7 @@ export const experience: Role[] = [
         lead: [
           {
             id: 'burn',
-            text: 'Reduced monthly operating burn 48% ($170K to $89K) through an operating-model redesign and vendor renegotiation, while retaining all mission-critical staff and accounts.',
+            text: 'Reduced monthly burn 48% ($170K to $89K) while retaining all mission-critical staff and accounts.',
           },
         ],
         rest: [
@@ -65,7 +65,7 @@ export const experience: Role[] = [
           },
           {
             id: 'framework',
-            text: 'Designed and implemented a post-crisis operating framework from scratch: internal controls, tiered approval workflows, cash governance protocols, and financial reporting standards, and completed full governance remediation.',
+            text: 'Designed a post-crisis operating framework (internal controls, tiered approvals, cash governance, financial reporting) and completed full governance remediation.',
           },
         ],
       },
