@@ -1,0 +1,118 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../components/Base.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { photos } from '../data/photos';
+import { site } from '../data/site';
+import { getSocialImage } from '../lib/social-image';
+
+const social = await getSocialImage();
+const imageUrl = new URL(social.src, Astro.site).href;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  description: site.tagline,
+  image: imageUrl,
+  sameAs: site.sameAs,
+};
+---
+
+<Base
+  title={site.name}
+  description={site.description}
+  image={social.src}
+  imageAlt={photos.hero.alt}
+  imageWidth={social.attributes.width}
+  imageHeight={social.attributes.height}
+  jsonLd={person}
+>
+  <div class="home-hero">
+  <section class="hero">
+    <h1>
+      <span>Derek</span>
+      <span class="surname">Jackson</span>
+    </h1>
+    <p class="tagline">{site.tagline}</p>
+  </section>
+
+  <figure class="hero-figure">
+    <div class="frame frame-hero">
+      <Picture
+        src={photos.hero.src}
+        alt={photos.hero.alt}
+        widths={[360, 520, 704]}
+        sizes="(min-width: 900px) 26rem, (min-width: 640px) 36rem, calc(100vw - 2.5rem)"
+        formats={['avif', 'webp']}
+        fallbackFormat="jpeg"
+        quality={80}
+        layout="constrained"
+        width={704}
+        priority
+      />
+    </div>
+    <figcaption>{photos.hero.caption}</figcaption>
+  </figure>
+  </div>
+
+  <div class="gallery">
+  <figure class="editorial-figure">
+    <div class="frame frame-editorial">
+      <Picture
+        src={photos.editorial.src}
+        alt={photos.editorial.alt}
+        widths={[480, 704, 1056, 1320]}
+        sizes="(min-width: 900px) 36rem, calc(100vw - 2.5rem)"
+        formats={['avif', 'webp']}
+        fallbackFormat="jpeg"
+        quality={72}
+        layout="constrained"
+        width={1320}
+      />
+    </div>
+    <figcaption>{photos.editorial.caption}</figcaption>
+  </figure>
+
+  <div class="side-column">
+  <div class="frame frame-about">
+      <Picture
+        src={photos.about.src}
+        alt={photos.about.alt}
+        widths={[256, 384, 560]}
+        sizes="(min-width: 900px) 13rem, (min-width: 640px) 14rem, 16rem"
+        formats={['avif', 'webp']}
+        fallbackFormat="jpeg"
+        quality={75}
+        layout="constrained"
+        width={560}
+      />
+    </div>
+    <div class="about-copy">
+      <h2 class="kicker">About</h2>
+      <p class="bio">{site.bio}</p>
+    </div>
+    <figure class="friends-figure">
+      <div class="frame frame-friends">
+        <Picture
+          src={photos.friends.src}
+          alt={photos.friends.alt}
+          widths={[480, 720, 1039]}
+          sizes="(min-width: 900px) 22rem, calc(100vw - 2.5rem)"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpeg"
+          quality={75}
+          layout="constrained"
+          width={1039}
+        />
+      </div>
+      <figcaption>{photos.friends.caption}</figcaption>
+    </figure>
+  <section class="section links-block">
+    <h2 class="kicker">Links</h2>
+    <SocialLinks links={site.socials} />
+  </section>
+  </div>
+  </div>
+</Base>

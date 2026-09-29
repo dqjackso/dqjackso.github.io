@@ -1,0 +1,74 @@
+---
+import { photos } from '../data/photos';
+import { getSocialImage } from '../lib/social-image';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  ogType?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
+  tags?: string[];
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  image: imageProp,
+  imageAlt: imageAltProp,
+  imageWidth,
+  imageHeight,
+  ogType = 'website',
+  published,
+  modified,
+  tags = [],
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const social = await getSocialImage();
+const image = imageProp ?? social.src;
+const imageAlt = imageAltProp ?? photos.hero.alt;
+const ogWidth = imageWidth ?? (imageProp ? undefined : social.attributes.width);
+const ogHeight = imageHeight ?? (imageProp ? undefined : social.attributes.height);
+
+const documentTitle = title === site.name ? site.name : `${title} · ${site.name}`;
+const pathname = Astro.url.pathname === '/404/' ? '/404.html' : Astro.url.pathname;
+const canonical = new URL(pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+const rssUrl = new URL('/rss.xml', Astro.site);
+const json = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
+---
+
+<title>{documentTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical.href} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate" type="application/rss+xml" title={site.name} href={rssUrl.href} />
+{noindex && <meta name="robots" content="noindex" />}
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={documentTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:image" content={imageUrl.href} />
+<meta property="og:image:alt" content={imageAlt} />
+{ogWidth && <meta property="og:image:width" content={String(ogWidth)} />}
+{ogHeight && <meta property="og:image:height" content={String(ogHeight)} />}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={documentTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl.href} />
+<meta name="twitter:image:alt" content={imageAlt} />
+{published && <meta property="article:published_time" content={published.toISOString()} />}
+{modified && <meta property="article:modified_time" content={modified.toISOString()} />}
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
+{json && <script type="application/ld+json" set:html={json} />}

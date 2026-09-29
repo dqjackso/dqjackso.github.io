@@ -1,0 +1,131 @@
+---
+import Base from '../components/Base.astro';
+import {
+  certifications,
+  competencies,
+  education,
+  experience,
+  patent,
+  tools,
+} from '../data/work';
+
+const description =
+  'Derek Jackson is a consultant at SEI. Earlier work includes Cyber-Dive Corp, Tinfoil Security, JSA IT Services, the U.S. Army, and teaching at Arizona State University.';
+---
+
+<Base title="Work" description={description}>
+  <header class="page-head">
+    <p class="kicker">Experience</p>
+    <h1>Work</h1>
+    <p class="lede">
+      10+ years building operating infrastructure where none existed, from military special operations and
+      federal contracting to cybersecurity and a product company.
+    </p>
+    <p class="clearance">Security clearance-eligible background (former TS-SCI).</p>
+  </header>
+
+  <aside class="patent">
+    <p class="kicker">{patent.label}</p>
+    <p class="patent-number">{patent.number}</p>
+  </aside>
+
+  <ol class="record">
+    {
+      experience.map((job) => (
+        <li>
+          <div class="rail">
+            <p class="dates">{job.dates}</p>
+            <p class="org">
+              {job.org}
+              {job.place && <span class="place"> · {job.place}</span>}
+            </p>
+            {job.former && <p class="badge former">Former company</p>}
+          </div>
+          <div class="role-body">
+            <h3>{job.title}</h3>
+            {job.descriptor && <p class="descriptor">{job.descriptor}</p>}
+            {job.groups.map((group) => (
+              <div class="group">
+                {group.label && <h4 class="group-label">{group.label}</h4>}
+                {group.lead.length > 0 && (
+                  <ul class="points">
+                    {group.lead.map((point) => (
+                      <li>{point.text}</li>
+                    ))}
+                  </ul>
+                )}
+                {group.rest.length > 0 && (
+                  <details class="more">
+                    <summary>{group.label ? `More on ${group.label}` : 'More from this role'}</summary>
+                    <ul class="points">
+                      {group.rest.map((point) => (
+                        <li>{point.text}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Study</p>
+      <h2>Education</h2>
+    </header>
+    <ol class="record">
+      {
+        education.map((item) => (
+          <li>
+            <p class="dates">{item.dates}</p>
+            <div>
+              <h3>{item.credential}</h3>
+              <p class="org">{item.org}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Credentials</p>
+      <h2>Certifications</h2>
+    </header>
+    <ul class="record">
+      {
+        certifications.map((item) => (
+          <li>
+            <p class="dates">{item.issuer}</p>
+            <h3>{item.name}</h3>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Practice</p>
+      <h2>Competencies</h2>
+    </header>
+    <ul class="skill-items">
+      {competencies.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Tools</p>
+      <h2>Skills</h2>
+    </header>
+    <ul class="skill-items">
+      {tools.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from '../../../components/Base.astro';
+import { formatDate, getPosts, tagSlug, type Post } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const bySlug = new Map<string, { tag: string; posts: Post[] }>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = tagSlug(tag);
+      const group = bySlug.get(slug) ?? { tag, posts: [] };
+      group.posts.push(post);
+      bySlug.set(slug, group);
+    }
+  }
+
+  return [...bySlug.entries()].map(([slug, group]) => ({
+    params: { tag: slug },
+    props: group,
+  }));
+}
+
+interface Props {
+  tag: string;
+  posts: Post[];
+}
+
+const { tag, posts } = Astro.props;
+const description = `Posts tagged ${tag}.`;
+---
+
+<Base title={tag} description={description}>
+  <header class="page-head">
+    <p class="kicker">Tag</p>
+    <h1>{tag}</h1>
+    <p class="lede">{posts.length === 1 ? '1 post' : `${posts.length} posts`} with this tag.</p>
+  </header>
+
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <article>
+            <p class="meta">
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              {post.data.sample && <span class="badge">Sample</span>}
+            </p>
+            <h2>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

@@ -1,0 +1,27 @@
+---
+import { site } from '../data/site';
+
+const pathname = Astro.url.pathname;
+
+function current(href: string): boolean {
+  if (href === '/blog/') return pathname.startsWith('/blog');
+  return pathname === href;
+}
+---
+
+<header class="site-header">
+  <a class="wordmark" href="/">{site.name}</a>
+  <nav class="nav" aria-label="Primary">
+    {
+      site.nav.map((item) => (
+        <a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+      <span class="label-light">Dark</span>
+      <span class="label-dark">Light</span>
+    </button>
+  </nav>
+</header>

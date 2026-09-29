@@ -1,0 +1,113 @@
+---
+import '@fontsource/fraunces/latin-500.css';
+import '@fontsource/fraunces/latin-500-italic.css';
+import '@fontsource/fraunces/latin-600.css';
+import '@fontsource/source-sans-3/latin-400.css';
+import '@fontsource/source-sans-3/latin-400-italic.css';
+import '@fontsource/source-sans-3/latin-600.css';
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import Seo from './Seo.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  ogType?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
+  tags?: string[];
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3efe7" />
+    <script is:inline>
+      (function () {
+        var key = 'theme';
+        var stored = null;
+        try {
+          stored = localStorage.getItem(key);
+        } catch (e) {}
+        var theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        var root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.style.colorScheme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#12110f' : '#f3efe7');
+      })();
+    </script>
+    <Seo {...props} />
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="shell">
+      <Header />
+      <main id="content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    <script>
+      const key = 'theme';
+      const root = document.documentElement;
+      const button = document.querySelector('[data-theme-toggle]');
+
+      function currentTheme() {
+        return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      }
+
+      function apply(theme: 'light' | 'dark') {
+        root.setAttribute('data-theme', theme);
+        root.style.colorScheme = theme;
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#12110f' : '#f3efe7');
+        if (button) {
+          button.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+          );
+        }
+        document.dispatchEvent(new CustomEvent('themechange'));
+      }
+
+      apply(currentTheme());
+
+      button?.addEventListener('click', () => {
+        const next = currentTheme() === 'dark' ? 'light' : 'dark';
+        try {
+          localStorage.setItem(key, next);
+        } catch (e) {}
+        apply(next);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+        let stored: string | null = null;
+        try {
+          stored = localStorage.getItem(key);
+        } catch (e) {}
+        if (stored !== 'light' && stored !== 'dark') {
+          apply(event.matches ? 'dark' : 'light');
+        }
+      });
+    </script>
+  </body>
+</html>
