@@ -78,11 +78,6 @@ const tiles = [
               width={960}
             />
           </div>
-          {'caption' in tile.photo && tile.photo.caption ? (
-            <figcaption>{tile.photo.caption}</figcaption>
-          ) : (
-            <figcaption class="caption-spacer" aria-hidden="true" />
-          )}
         </figure>
       ))
     }

@@ -142,7 +142,7 @@ a:hover {
 .wordmark {
   font-family: var(--display);
   font-weight: 500;
-  font-size: 1.7rem;
+  font-size: 2.05rem;
   letter-spacing: -0.03em;
   text-decoration: none;
   color: inherit;
@@ -157,7 +157,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 1.2rem;
+  font-size: 1.375rem;
 }
 
 .nav a,
@@ -309,10 +309,8 @@ a:hover {
   margin: 0;
 }
 
-.hero-figure figcaption,
-.photo-row figcaption {
+.hero-figure figcaption {
   margin-top: 0.7rem;
-  min-height: 2.9em;
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.45;
@@ -331,7 +329,6 @@ a:hover {
 
 .about-block {
   margin-top: clamp(2.75rem, 5vw, 4.25rem);
-  max-width: var(--measure);
 }
 
 .about-block h2 {
@@ -343,14 +340,15 @@ a:hover {
   margin-bottom: 0.9rem;
 }
 
-.caption-spacer {
-  visibility: hidden;
+.about-block .bio {
+  max-width: var(--measure);
 }
 
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .socials a {
@@ -368,8 +366,8 @@ a:hover {
 }
 
 .socials svg {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.625rem;
+  height: 1.625rem;
   display: block;
 }
 
@@ -822,6 +820,17 @@ figcaption,
     align-items: start;
   }
 
+  .about-block {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .about-block h2 {
+    margin-bottom: 0;
+  }
+
   .hero h1 {
     font-size: clamp(4.8rem, 6.4vw, 6.75rem);
   }
@@ -911,11 +920,11 @@ figcaption,
   }
 
   .nav {
-    font-size: 1.05rem;
+    font-size: 1.125rem;
   }
 
   .wordmark {
-    font-size: 1.45rem;
+    font-size: 1.7rem;
   }
 
   .hero h1 {
