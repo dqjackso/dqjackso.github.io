@@ -1,8 +1,16 @@
 ---
 import Base from '../components/Base.astro';
-import { experience, skills } from '../data/work';
+import {
+  certifications,
+  competencies,
+  education,
+  experience,
+  patent,
+  tools,
+} from '../data/work';
 
-const description = 'PLACEHOLDER: summary of Derek Jackson’s experience.';
+const description =
+  'Derek Jackson is a consultant at SEI. Earlier work includes Cyber-Dive Corp, Tinfoil Security, JSA IT Services, the U.S. Army, and teaching at Arizona State University.';
 ---
 
 <Base title="Work" description={description}>
@@ -10,10 +18,16 @@ const description = 'PLACEHOLDER: summary of Derek Jackson’s experience.';
     <p class="kicker">Experience</p>
     <h1>Work</h1>
     <p class="lede">
-      PLACEHOLDER: a short introduction to the work, if Derek wants one. The entries below are empty
-      slots.
+      10+ years building operating infrastructure where none existed, from military special operations and
+      federal contracting to cybersecurity and a product company.
     </p>
+    <p class="clearance">Security clearance-eligible background (former TS-SCI).</p>
   </header>
+
+  <aside class="patent">
+    <p class="kicker">{patent.label}</p>
+    <p class="patent-number">{patent.number}</p>
+  </aside>
 
   <ol class="record">
     {
@@ -21,9 +35,35 @@ const description = 'PLACEHOLDER: summary of Derek Jackson’s experience.';
         <li>
           <p class="dates">{job.dates}</p>
           <div>
-            <h3>{job.role}</h3>
-            <p class="org">{job.org}</p>
-            <p class="summary">{job.summary}</p>
+            <h3>{job.title}</h3>
+            {job.descriptor && <p class="descriptor">{job.descriptor}</p>}
+            <p class="org">
+              {job.org}
+              {job.place && <span class="place"> · {job.place}</span>}
+            </p>
+            {job.former && <p class="badge former">Former company</p>}
+            {job.groups.map((group) => (
+              <div class="group">
+                {group.label && <h4 class="group-label">{group.label}</h4>}
+                {group.lead.length > 0 && (
+                  <ul class="points">
+                    {group.lead.map((point) => (
+                      <li>{point.text}</li>
+                    ))}
+                  </ul>
+                )}
+                {group.rest.length > 0 && (
+                  <details class="more">
+                    <summary>{group.label ? `More on ${group.label}` : 'More from this role'}</summary>
+                    <ul class="points">
+                      {group.rest.map((point) => (
+                        <li>{point.text}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
+            ))}
           </div>
         </li>
       ))
@@ -32,22 +72,58 @@ const description = 'PLACEHOLDER: summary of Derek Jackson’s experience.';
 
   <section class="skills">
     <header class="page-head">
-      <p class="kicker">Expertise</p>
-      <h2>Skills</h2>
+      <p class="kicker">Study</p>
+      <h2>Education</h2>
     </header>
-    <div class="record">
+    <ol class="record">
       {
-        skills.map((group) => (
-          <div class="skill-row">
-            <h3>{group.area}</h3>
-            <ul class="skill-items">
-              {group.items.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </div>
+        education.map((item) => (
+          <li>
+            <p class="dates">{item.dates}</p>
+            <div>
+              <h3>{item.credential}</h3>
+              <p class="org">{item.org}</p>
+            </div>
+          </li>
         ))
       }
-    </div>
+    </ol>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Credentials</p>
+      <h2>Certifications</h2>
+    </header>
+    <ul class="record">
+      {
+        certifications.map((item) => (
+          <li>
+            <p class="dates">{item.issuer}</p>
+            <h3>{item.name}</h3>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Practice</p>
+      <h2>Competencies</h2>
+    </header>
+    <ul class="skill-items">
+      {competencies.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Tools</p>
+      <h2>Skills</h2>
+    </header>
+    <ul class="skill-items">
+      {tools.map((item) => <li>{item}</li>)}
+    </ul>
   </section>
 </Base>

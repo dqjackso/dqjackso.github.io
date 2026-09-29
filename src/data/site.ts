@@ -17,7 +17,11 @@ export const site = {
     'An out-of-the-box thought leader, who is mathematically rigorous and technically proficient, but makes concepts approachable in a human centered way.',
   description:
     'An out-of-the-box thought leader, who is mathematically rigorous and technically proficient, but makes concepts approachable in a human centered way.',
-  bio: 'PLACEHOLDER: bio from Derek',
+  /**
+   * DRAFT BIO for Derek to review.
+   * Drawn from the resume summary and his positioning. No phone number or email.
+   */
+  bio: 'Derek has spent 10+ years building operating infrastructure where none existed, across military special operations, federal contracting, cybersecurity, and financial services. He takes an ambiguous mandate through to a measurable outcome: a headquarters stood up in 7 days, a company stabilized in 14 days, and a business-to-government contracting operation generating revenue in year one. He keeps the work mathematically rigorous and technically exact, and he makes the ideas approachable.',
   /**
    * Visible icon row. One Facebook icon, pointing at the personal profile.
    * The second Facebook profile is only in sameAs.

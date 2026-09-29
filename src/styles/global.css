@@ -428,8 +428,82 @@ figcaption,
 }
 
 .org,
-.summary {
+.summary,
+.descriptor {
   margin-top: 0.35rem;
+}
+
+.descriptor {
+  max-width: 36rem;
+  font-size: 1.05rem;
+}
+
+.clearance {
+  margin-top: 1rem;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.patent {
+  max-width: 40rem;
+  margin: -0.5rem 0 clamp(2.25rem, 5vw, 3.25rem);
+  padding: 0.35rem 0 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.patent-number {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.former {
+  margin-top: 0.65rem;
+}
+
+.group {
+  margin-top: 1.15rem;
+}
+
+.group-label {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.points {
+  margin: 0.55rem 0 0;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+
+.points li {
+  max-width: 46rem;
+  line-height: 1.5;
+}
+
+.points li + li {
+  margin-top: 0.45rem;
+}
+
+.more {
+  margin-top: 0.65rem;
+}
+
+.more summary {
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.more summary:hover {
+  color: var(--accent-ink);
 }
 
 .summary {
