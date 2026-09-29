@@ -1,0 +1,162 @@
+---
+import { chartSvg, type ChartPoint, type ChartSpec } from '../lib/chart-svg';
+
+interface Props {
+  data: ChartPoint[];
+  caption: string;
+  title?: string;
+  xLabel?: string;
+  yLabel?: string;
+}
+
+const { data, caption, title = '', xLabel = 'x', yLabel = 'y' } = Astro.props;
+
+const points = (data ?? [])
+  .map((point) => ({
+    x: typeof point.x === 'number' ? point.x : String(point.x),
+    y: Number(point.y),
+  }))
+  .filter((point) => Number.isFinite(point.y) && (typeof point.x === 'number' || point.x.length > 0));
+
+const spec: ChartSpec = {
+  data: points,
+  title,
+  caption,
+  xLabel,
+  yLabel,
+  numeric: points.length > 0 && points.every((point) => typeof point.x === 'number'),
+};
+
+const svg = points.length > 0 ? chartSvg(spec) : '';
+const payload = JSON.stringify(spec);
+---
+
+<figure class="chart">
+  {
+    title && <p class="chart-title">{title}</p>
+  }
+  {
+    points.length > 0 ? (
+      <div class="chart-frame" data-chart={payload} aria-hidden="true">
+        <div class="chart-fallback" set:html={svg} />
+        <div class="chart-live" hidden />
+      </div>
+    ) : (
+      <p>No data to plot.</p>
+    )
+  }
+  {
+    points.length > 0 && (
+      <table class="sr-only">
+        <caption>{title || caption}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{xLabel}</th>
+            <th scope="col">{yLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {points.map((point) => (
+            <tr>
+              <td>{point.x}</td>
+              <td>{point.y}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<script>
+  import * as Plot from '@observablehq/plot';
+
+  type Point = { x: number | string; y: number };
+  type Spec = {
+    data: Point[];
+    title: string;
+    caption: string;
+    xLabel: string;
+    yLabel: string;
+    numeric: boolean;
+  };
+
+  function color(name: string): string {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  const drawn = new WeakMap<HTMLElement, string>();
+
+  function draw(frame: HTMLElement) {
+    const raw = frame.dataset.chart;
+    const live = frame.querySelector<HTMLElement>('.chart-live');
+    const fallback = frame.querySelector<HTMLElement>('.chart-fallback');
+    if (!raw || !live || !fallback) return;
+
+    let spec: Spec;
+    try {
+      spec = JSON.parse(raw) as Spec;
+    } catch {
+      return;
+    }
+    if (!spec.data?.length) return;
+
+    const width = Math.round(frame.clientWidth);
+    const height = Math.round(frame.clientHeight);
+    if (width < 20 || height < 20) return;
+
+    const accent = color('--accent') || '#c4512c';
+    const signature = `${width}x${height}:${accent}`;
+    if (drawn.get(frame) === signature) return;
+    const ink = color('--ink') || '#1c1714';
+    const marks = spec.numeric
+      ? [
+          Plot.lineY(spec.data, { x: 'x', y: 'y', stroke: accent, strokeWidth: 2 }),
+          Plot.dot(spec.data, { x: 'x', y: 'y', fill: accent, r: 3.5, tip: true }),
+        ]
+      : [Plot.barY(spec.data, { x: 'x', y: 'y', fill: accent, tip: true })];
+
+    try {
+      const plot = Plot.plot({
+        width,
+        height,
+        marginTop: 18,
+        marginRight: 12,
+        marginBottom: 36,
+        marginLeft: 46,
+        ariaLabel: spec.title || spec.caption,
+        style: {
+          background: 'transparent',
+          color: ink,
+          fontFamily: '"Source Sans 3", sans-serif',
+          fontSize: '13px',
+        },
+        x: { label: spec.xLabel },
+        y: { label: spec.yLabel, grid: true },
+        marks,
+      });
+      live.replaceChildren(plot);
+      fallback.hidden = true;
+      live.hidden = false;
+      drawn.set(frame, signature);
+    } catch (error) {
+      console.error(error);
+      fallback.hidden = false;
+      live.hidden = true;
+    }
+  }
+
+  function drawAll() {
+    document.querySelectorAll<HTMLElement>('[data-chart]').forEach((frame) => draw(frame));
+  }
+
+  drawAll();
+  document.addEventListener('themechange', drawAll);
+
+  const frames = document.querySelectorAll<HTMLElement>('[data-chart]');
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(() => drawAll());
+    frames.forEach((frame) => observer.observe(frame));
+  }
+</script>

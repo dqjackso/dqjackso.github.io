@@ -1,0 +1,90 @@
+---
+import { render } from 'astro:content';
+import Base from '../../components/Base.astro';
+import { site } from '../../data/site';
+import { formatDate, getPosts, tagSlug, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const canonical = new URL(`/blog/${post.id}/`, Astro.site);
+const image = post.data.image ?? site.ogImage;
+const imageAlt = post.data.imageAlt ?? site.ogImageAlt;
+const modified = post.data.updatedDate ?? post.data.pubDate;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: modified.toISOString(),
+  inLanguage: 'en',
+  keywords: post.data.tags.join(', '),
+  image: [new URL(image, Astro.site).href],
+  mainEntityOfPage: canonical.href,
+  author: {
+    '@type': 'Person',
+    name: site.name,
+    url: site.url,
+  },
+};
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  image={image}
+  imageAlt={imageAlt}
+  ogType="article"
+  published={post.data.pubDate}
+  modified={modified}
+  tags={post.data.tags}
+  noindex={post.data.sample}
+  jsonLd={jsonLd}
+>
+  <article class="post">
+    {
+      post.data.sample && (
+        <p class="banner">
+          Sample post. This page demonstrates math, a chart, and code on the site. It is not an
+          article by Derek Jackson.
+        </p>
+      )
+    }
+    <header class="post-head">
+      <p class="kicker">Blog</p>
+      <h1>{post.data.title}</h1>
+      <p class="dek">{post.data.description}</p>
+      <p class="meta">
+        <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+        {post.data.sample && <span class="badge">Sample</span>}
+      </p>
+      {
+        post.data.tags.length > 0 && (
+          <ul class="tags">
+            {post.data.tags.map((tag) => (
+              <li>
+                <a href={`/blog/tags/${tagSlug(tag)}/`}>{tag}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

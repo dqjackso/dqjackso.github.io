@@ -1,0 +1,54 @@
+---
+import Base from '../../components/Base.astro';
+import { formatDate, getPosts, tagSlug } from '../../lib/posts';
+
+const posts = await getPosts();
+const published = posts.filter((post) => !post.data.sample);
+const description = 'Blog by Derek Jackson.';
+---
+
+<Base title="Blog" description={description}>
+  <header class="page-head">
+    <p class="kicker">Notes</p>
+    <h1>Blog</h1>
+    <p class="lede">
+      {
+        published.length > 0
+          ? 'Notes and essays.'
+          : posts.length > 0
+            ? 'Essays will live here. The post below is a sample of the format — mathematics, a chart, and code — and is not a piece of writing by Derek.'
+            : 'Essays will live here.'
+      }
+    </p>
+  </header>
+
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <article>
+            <p class="meta">
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              {post.data.sample && <span class="badge">Sample</span>}
+            </p>
+            <h2>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+            {
+              post.data.tags.length > 0 && (
+                <ul class="tags">
+                  {post.data.tags.map((tag) => (
+                    <li>
+                      <a href={`/blog/tags/${tagSlug(tag)}/`}>{tag}</a>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../components/Base.astro';
+import { experience, skills } from '../data/work';
+
+const description = 'PLACEHOLDER: summary of Derek Jackson’s experience.';
+---
+
+<Base title="Work" description={description}>
+  <header class="page-head">
+    <p class="kicker">Experience</p>
+    <h1>Work</h1>
+    <p class="lede">
+      PLACEHOLDER: a short introduction to the work, if Derek wants one. The entries below are empty
+      slots.
+    </p>
+  </header>
+
+  <ol class="record">
+    {
+      experience.map((job) => (
+        <li>
+          <p class="dates">{job.dates}</p>
+          <div>
+            <h3>{job.role}</h3>
+            <p class="org">{job.org}</p>
+            <p class="summary">{job.summary}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <section class="skills">
+    <header class="page-head">
+      <p class="kicker">Expertise</p>
+      <h2>Skills</h2>
+    </header>
+    <div class="record">
+      {
+        skills.map((group) => (
+          <div class="skill-row">
+            <h3>{group.area}</h3>
+            <ul class="skill-items">
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
