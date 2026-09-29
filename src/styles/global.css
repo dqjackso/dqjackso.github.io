@@ -283,6 +283,15 @@ a:hover {
   object-position: center 42%;
 }
 
+.frame-friends {
+  width: min(100%, 22rem);
+  aspect-ratio: 1039 / 1339;
+}
+
+.frame-friends img {
+  object-position: center 35%;
+}
+
 .hero-figure,
 .editorial-figure {
   margin-top: clamp(2.5rem, 6vw, 4rem);
@@ -306,6 +315,44 @@ a:hover {
   margin-top: clamp(2.75rem, 6vw, 4.25rem);
 }
 
+.friends-figure {
+  grid-column: 1 / -1;
+  margin-top: 0.35rem;
+}
+
+.friends-figure figcaption {
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.socials a:hover {
+  color: var(--accent-ink);
+}
+
+.socials svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  display: block;
+}
+
 .section {
   margin-top: clamp(2.75rem, 6vw, 4.25rem);
   max-width: 42rem;
@@ -316,24 +363,6 @@ a:hover {
   line-height: 1.55;
 }
 
-.link-list li {
-  display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
-  gap: 0.75rem 1.25rem;
-  align-items: baseline;
-  padding: 0.85rem 0;
-  border-top: 1px solid var(--line);
-}
-
-.link-list li:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.link-label {
-  font-weight: 600;
-}
-
-.link-note,
 .lede,
 .dates,
 .org,
@@ -667,7 +696,6 @@ figcaption,
 }
 
 @media (max-width: 640px) {
-  .link-list li,
   .record li,
   .skill-row {
     grid-template-columns: 1fr;

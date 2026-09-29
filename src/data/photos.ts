@@ -1,4 +1,5 @@
 import aspens from '../assets/derek-forest-aspens.jpg';
+import friends from '../assets/derek-with-friends.jpg';
 import headshot from '../assets/derek-headshot-suit.jpg';
 import plaid from '../assets/derek-portrait-plaid.jpg';
 
@@ -25,5 +26,11 @@ export const photos = {
     alt: 'Derek Jackson standing in tall grass beneath aspen trees, wearing a light shirt and khaki pants, with sunlight flaring through the leaves.',
     caption: 'Standing in tall grass under aspen trees.',
     position: 'center 38%',
+  },
+  friends: {
+    src: friends,
+    alt: 'Derek Jackson on the left, wearing glasses, a beard, and a gray puffer jacket, smiling indoors with two other people. The person beside him wears a tan jacket; the person on the right wears a black jacket.',
+    caption: 'With friends, indoors.',
+    position: 'center center',
   },
 };

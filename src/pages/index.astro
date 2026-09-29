@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Base from '../components/Base.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { photos } from '../data/photos';
 import { site } from '../data/site';
 import { getSocialImage } from '../lib/social-image';
@@ -15,6 +16,7 @@ const person = {
   url: site.url,
   description: site.tagline,
   image: imageUrl,
+  sameAs: site.sameAs,
 };
 ---
 
@@ -88,34 +90,26 @@ const person = {
       <h2 class="kicker">About</h2>
       <p class="bio">{site.bio}</p>
     </div>
+    <figure class="friends-figure">
+      <div class="frame frame-friends">
+        <Picture
+          src={photos.friends.src}
+          alt={photos.friends.alt}
+          widths={[480, 720, 1039]}
+          sizes="(min-width: 640px) 22rem, calc(100vw - 2.5rem)"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpeg"
+          quality={75}
+          layout="constrained"
+          width={1039}
+        />
+      </div>
+      <figcaption>{photos.friends.caption}</figcaption>
+    </figure>
   </section>
 
   <section class="section">
     <h2 class="kicker">Links</h2>
-    <ul class="link-list">
-      {
-        site.socials.map((socialLink) => {
-          const href = socialLink.href?.trim();
-          return (
-            <li>
-              {href ? (
-                <a class="link-label" href={href}>
-                  {socialLink.label}
-                </a>
-              ) : (
-                <span class="link-label">{socialLink.label}</span>
-              )}
-              {
-                href ? (
-                  <span class="link-note">{href.replace(/^https?:\/\//, '')}</span>
-                ) : (
-                  <span class="link-note">{socialLink.placeholder}</span>
-                )
-              }
-            </li>
-          );
-        })
-      }
-    </ul>
+    <SocialLinks links={site.socials} />
   </section>
 </Base>
