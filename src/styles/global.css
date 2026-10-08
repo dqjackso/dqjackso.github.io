@@ -1494,19 +1494,12 @@ figcaption,
   background: color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
-.model-lead p {
-  margin: 0 0 0.75rem;
-  font-size: 1.15rem;
-  line-height: 1.45;
-}
-
 .model-note {
-  margin: 0 0 0.35rem;
-  color: var(--accent-ink);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
+  margin: 0 0 0.15rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .model .katex {
@@ -1535,28 +1528,6 @@ figcaption,
 
 .prose > .viz + .model {
   margin-top: 0.35rem;
-}
-
-.model-plain p + p,
-.model-plain .model-legend {
-  margin-top: 0.9rem;
-}
-
-.prose .model-legend,
-.model-legend {
-  margin: 0.9rem 0;
-  padding: 0;
-  list-style: none;
-}
-
-.prose .model-legend li + li,
-.model-legend li + li {
-  margin-top: 0.35rem;
-}
-
-.model-legend strong {
-  font-family: var(--display);
-  font-weight: 500;
 }
 
 .notes {
