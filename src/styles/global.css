@@ -1408,19 +1408,43 @@ figcaption,
   stroke-linejoin: round;
 }
 
-.curve-sweet {
+.curve-sweet,
+.curve-drop {
   position: absolute;
-  left: 50%;
-  top: 58%;
   margin: 0;
-  transform: translate(-50%, -50%);
   padding: 0.2rem 0.7rem;
   border-radius: 999px;
   background: var(--bg);
   color: var(--accent-ink);
   font-family: var(--display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
   letter-spacing: -0.02em;
+}
+
+.curve-sweet {
+  left: 50%;
+  top: 18%;
+  transform: translate(-50%, -50%);
+}
+
+.curve-drop {
+  left: 76%;
+  top: 46%;
+  max-width: 8.5rem;
+  transform: translate(-50%, -50%);
+  line-height: 1.15;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .curve-drop {
+    left: auto;
+    right: 0.45rem;
+    top: 42%;
+    max-width: 6.5rem;
+    transform: translateY(-50%);
+    font-size: 0.92rem;
+  }
 }
 
 .curve-ticks {
@@ -1470,17 +1494,29 @@ figcaption,
   background: color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
+.model-lead p {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+}
+
 .model-note {
   margin: 0 0 0.35rem;
   color: var(--accent-ink);
-  font-size: 0.78rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .model .katex {
   font-size: 1.85em;
+}
+
+@media (max-width: 520px) {
+  .model .katex {
+    font-size: 1.45em;
+  }
 }
 
 .model .katex-display {
@@ -1488,9 +1524,39 @@ figcaption,
 }
 
 .model-plain {
-  max-width: 62ch;
+  max-width: 65ch;
   font-size: 1.125rem;
   line-height: 1.5;
+}
+
+.model-plain p {
+  margin: 0;
+}
+
+.prose > .viz + .model {
+  margin-top: 0.35rem;
+}
+
+.model-plain p + p,
+.model-plain .model-legend {
+  margin-top: 0.9rem;
+}
+
+.prose .model-legend,
+.model-legend {
+  margin: 0.9rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prose .model-legend li + li,
+.model-legend li + li {
+  margin-top: 0.35rem;
+}
+
+.model-legend strong {
+  font-family: var(--display);
+  font-weight: 500;
 }
 
 .notes {

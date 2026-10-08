@@ -18,24 +18,25 @@ const d = `M ${points.join(' L ')}`;
       <svg class="curve" viewBox="0 0 640 280" role="img" aria-labelledby="curve-title curve-desc">
         <title id="curve-title">Conceptual inverted U of enjoyment against fear</title>
         <desc id="curve-desc">
-          A schematic curve that rises to a middle sweet spot and falls when fear is too low or too high. No data points are plotted.
+          A sketch of enjoyment against fear. The curve peaks at f-star, the sweet spot, and falls off on both sides. The label on the shoulder marks that drop-off.
         </desc>
         <rect class="band" x="246" y="18" width="148" height="230" rx="16"></rect>
         <line class="axis" x1="28" y1="16" x2="28" y2="248"></line>
         <line class="axis" x1="28" y1="248" x2="612" y2="248"></line>
         <path class="line" pathLength="1" d={d}></path>
       </svg>
-      <p class="curve-sweet">sweet spot</p>
+      <p class="curve-sweet">f*</p>
+      <p class="curve-drop">falls off with b</p>
     </div>
   </div>
   <div class="curve-ticks">
-    <span>too little</span>
-    <span>moderate</span>
-    <span>too much</span>
+    <span>low</span>
+    <span>sweet spot</span>
+    <span>high</span>
   </div>
   <p class="curve-x">Fear</p>
   <figcaption>
-    Schematic, not data. Enjoyment peaks when the fear is moderate, and drops off on either side.{' '}
+    A sketch of the curve the study describes. Enjoyment peaks when the fear is moderate.{' '}
     <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7734554/">Andersen et al., 2020</a>.
   </figcaption>
 </figure>
