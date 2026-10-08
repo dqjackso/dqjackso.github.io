@@ -11,6 +11,7 @@ import RoadsDiagram from '../../components/scare/RoadsDiagram.astro';
 import NpuPanels from '../../components/scare/NpuPanels.astro';
 import WhenWhether from '../../components/scare/WhenWhether.astro';
 import FearEnjoyment from '../../components/scare/FearEnjoyment.astro';
+import ModelCard from '../../components/scare/ModelCard.astro';
 
 I'm getting ready to decorate for Halloween, and I keep running into a small puzzle. The whole point of a good decoration is to make someone jump. But the person who jumps most reliably is often the one who knows exactly where the scare is hiding. You know the skeleton is wired to lurch when you walk past it. You know the speaker in the bushes is about to shriek. And your body reacts anyway.
 
@@ -50,17 +51,21 @@ The test has three rooms.
 
 A 2018 study by Ken Bennett, Jacqueline Dickmann, and Christine Larson at the University of Wisconsin-Milwaukee [pulled the two kinds of uncertainty apart](https://pmc.ncbi.nlm.nih.gov/articles/PMC6013348/). Volunteers watched a loading bar while waiting for a possible shock. In one condition the shock was certain but its timing was random. In another, the timing was fixed but the shock came only half the time. Uncertainty about *when* produced the strongest startle. Oddly, people *said* both kinds of uncertainty felt equally nerve-racking, so the body and the self-report told somewhat different stories.
 
-The paper ranks those conditions in the text and does not print the blink sizes, so this picture is an order, not a measurement.
+The paper ranks those conditions in the text and does not print the blink sizes, so the picture is an order, not a measurement.
 
 <WhenWhether />
 
-<p class="model-note">Illustrative model, not a fitted result.</p>
+<ModelCard>
+  <div slot="formula">
 
 $$
-S(u) \approx S_0 + k\,u
+S(u) \approx S_\{0\} + k\,u
 $$
 
-A bigger uncertainty about timing lines up with a bigger startle. The baseline and the slope are placeholders, not a fit to the Milwaukee recordings.
+  </div>
+
+  A bigger uncertainty about timing lines up with a bigger startle.
+</ModelCard>
 
 That is exactly the situation in a well-decorated front yard. Every trick-or-treater knows something will happen, but nobody knows the moment.
 
@@ -74,13 +79,17 @@ The shape they describe is the old inverted U.
 
 <FearEnjoyment />
 
-<p class="model-note">Illustrative model, not a fitted result.</p>
+<ModelCard>
+  <div slot="formula">
 
 $$
 E(f) \approx a - b(f - f^\{\ast\})^2
 $$
 
-Enjoyment is highest around a moderate level of fear and falls away on either side. This is a sketch of that shape, not the quadratic reported by the Aarhus team.
+  </div>
+
+  Enjoyment is highest around a moderate level of fear and falls away on either side.
+</ModelCard>
 
 Sociologist Margee Kerr and colleagues [surveyed and recorded EEG from visitors](https://greatergood.berkeley.edu/article/item/how_a_haunted_house_can_make_you_happier) to an adults-only Pittsburgh haunt and found that people left in a better mood, especially those who arrived bored, tired, or stressed. Their [paper in *Emotion*](https://doi.org/10.1037/emo0000470) argues that fear experienced "within the context of safety and control" offers a chance to practice tolerating distress. These visitors chose to be there, so it isn't proof that haunts lift everyone's mood, but the pattern is striking.
 
@@ -99,3 +108,12 @@ And finally, safe rehearsal works best in the sweet spot. Security teams already
 ## Notice your own flinch
 
 So this Halloween, when the motion sensor clicks and the skeleton lunges, try to notice the order of events. You'll jump first. A beat later you'll remember that you knew all along, and you'll probably laugh. That small gap between body and mind is one of the oldest things you own, and it deserves a moment of appreciation before you go back to untangling the orange lights.
+
+<details class="notes">
+<summary>Notes for the curious</summary>
+
+Bennett, Dickmann, and Larson did not print the blink sizes in the text. Those appear only in a figure, so the ranking above follows their statistical tests. During the wait, the effect of condition was F(3, 123) = 16.34, p &lt; .0001, partial η² = 0.285. Not knowing when was larger than not knowing whether, a certain shock, and safe, each p &lt; .0001. Not knowing whether was larger than a certain shock, p &lt; .012, and was not larger than safe, p = .44. Certain and safe did not differ, p &gt; .99.
+
+Andersen and colleagues found a curve between fear and enjoyment at three filmed spots: the quadratic term was β = −0.05, SE = 0.02, p = .014. At those spots, enjoyment averaged 5.79 (SD = 2.87) and fear averaged 5.09 (SD = 2.80) on a 0–9 scale, and people remembered the spots 93.8% of the time (N = 110). Their published line is adjusted for other factors, and the paper does not print the rest of the equation, so the drawing here is only the shape.
+
+</details>
