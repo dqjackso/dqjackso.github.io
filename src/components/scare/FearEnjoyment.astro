@@ -1,0 +1,35 @@
+---
+const points: string[] = [];
+for (let i = 0; i <= 48; i += 1) {
+  const t = i / 48;
+  const x = 86 + t * 468;
+  const u = (x - 320) / 234;
+  const y = 292 - 210 * (1 - u * u);
+  points.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+}
+const d = `M ${points.join(' L ')}`;
+---
+
+<figure class="viz" id="viz-curve">
+  <p class="chart-title">Fear and enjoyment</p>
+  <svg class="curve" viewBox="0 0 640 400" role="img" aria-labelledby="curve-title curve-desc">
+    <title id="curve-title">Conceptual inverted U of enjoyment against fear</title>
+    <desc id="curve-desc">
+      A schematic parabola that rises to a middle sweet spot and falls on either side. The axes are labeled too little, moderate, and too much fear. No data points are plotted.
+    </desc>
+    <rect class="band" x="268" y="52" width="104" height="240" rx="10"></rect>
+    <text x="320" y="168" text-anchor="middle">sweet spot</text>
+    <line x1="72" y1="40" x2="72" y2="292" stroke="currentColor" stroke-opacity="0.28"></line>
+    <line x1="72" y1="292" x2="572" y2="292" stroke="currentColor" stroke-opacity="0.28"></line>
+    <path class="line" d={d}></path>
+    <text x="86" y="322" text-anchor="middle">too little</text>
+    <text x="320" y="322" text-anchor="middle">moderate</text>
+    <text x="554" y="322" text-anchor="middle">too much</text>
+    <text x="320" y="368" text-anchor="middle">Fear</text>
+    <text x="28" y="176" text-anchor="middle" transform="rotate(-90 28 176)">Enjoyment</text>
+  </svg>
+  <figcaption>
+    <strong>Schematic, not a plotted fit.</strong> For three video-recorded locations, Andersen and colleagues reported a quadratic term for enjoyment against self-reported fear of β = −0.05, SE = 0.02, p = .014 (Figure 4). At those locations, mean enjoyment was 5.79 (SD = 2.87) and mean fear was 5.09 (SD = 2.80), on a 0–9 scale, and visitors remembered the locations in 93.8% of cases (N = 110). Figure 4 is residualized after fixed and random effects, and the paper does not print the intercept or the linear term, so this drawing is a conceptual inverted U with a sweet-spot band, not their line.
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7734554/">Andersen et al., 2020</a>.
+  </figcaption>
+</figure>

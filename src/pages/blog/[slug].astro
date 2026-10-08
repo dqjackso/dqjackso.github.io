@@ -5,10 +5,10 @@ import ShareLinks from '../../components/ShareLinks.astro';
 import { photos } from '../../data/photos';
 import { site } from '../../data/site';
 import { getSocialImage } from '../../lib/social-image';
-import { formatDate, getPosts, tagSlug, type Post } from '../../lib/posts';
+import { formatDate, getPosts, getRenderablePosts, tagSlug, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getRenderablePosts();
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -21,6 +21,9 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const publishedTags = new Set(
+  (await getPosts()).flatMap((entry) => entry.data.tags.map((tag) => tagSlug(tag))),
+);
 const canonical = new URL(`/blog/${post.id}/`, Astro.site);
 const social = await getSocialImage();
 const image = post.data.image ?? social.src;
@@ -56,9 +59,15 @@ const jsonLd = {
   published={post.data.pubDate}
   modified={modified}
   tags={post.data.tags}
+  noindex={post.data.draft}
   jsonLd={jsonLd}
 >
   <article class="post" data-share-url={canonical.href} data-share-title={post.data.title}>
+    {
+      post.data.draft && (
+        <p class="banner">Draft for review. This page is not listed on the blog, in the RSS feed, or in the sitemap.</p>
+      )
+    }
     <header class="post-head">
       <p class="kicker">Blog</p>
       <h1>{post.data.title}</h1>
@@ -71,7 +80,11 @@ const jsonLd = {
           <ul class="tags">
             {post.data.tags.map((tag) => (
               <li>
-                <a href={`/blog/tags/${tagSlug(tag)}/`}>{tag}</a>
+                {publishedTags.has(tagSlug(tag)) ? (
+                  <a href={`/blog/tags/${tagSlug(tag)}/`}>{tag}</a>
+                ) : (
+                  <span>{tag}</span>
+                )}
               </li>
             ))}
           </ul>

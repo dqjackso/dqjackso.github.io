@@ -76,7 +76,10 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/rss.xml') && !page.endsWith('/404/'),
+      filter: (page) =>
+        !page.includes('/rss.xml') &&
+        !page.endsWith('/404/') &&
+        !page.includes('/blog/the-science-of-the-jump-scare/'),
     }),
   ],
   markdown: {

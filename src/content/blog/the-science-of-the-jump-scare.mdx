@@ -1,0 +1,101 @@
+---
+title: "The Science of the Jump Scare: Why You Flinch Even When You Know It's Coming"
+description: "A startle can land before you know what you heard. The neuroscience of timing, uncertainty, and why a jump scare still works when you already know it's coming."
+pubDate: 2026-10-06
+tags: ["halloween", "psychology", "neuroscience", "risk", "decision-making", "uncertainty"]
+draft: true
+---
+
+import StartleTimeline from '../../components/scare/StartleTimeline.astro';
+import RoadsDiagram from '../../components/scare/RoadsDiagram.astro';
+import NpuPanels from '../../components/scare/NpuPanels.astro';
+import WhenWhether from '../../components/scare/WhenWhether.astro';
+import FearEnjoyment from '../../components/scare/FearEnjoyment.astro';
+
+I'm getting ready to decorate for Halloween, and I keep running into a small puzzle. The whole point of a good decoration is to make someone jump. But the person who jumps most reliably is often the one who knows exactly where the scare is hiding. You know the skeleton is wired to lurch when you walk past it. You know the speaker in the bushes is about to shriek. And your body reacts anyway.
+
+So why doesn't knowing help? Scientists have been firing guns near people for almost a century trying to find out.
+
+## The gun you were warned about
+
+In 1939, the psychologists Carney Landis and William Hunt published *The Startle Pattern*, a catalog of the full-body flinch people make at a gunshot. In a [1985 follow-up](https://pubmed.ncbi.nlm.nih.gov/4078682/), Paul Ekman, Wallace Friesen, and Ronald Simons fired a blank pistol near volunteers, sometimes without warning and sometimes after telling them exactly when it would go off. They also asked some people to hold perfectly still. According to [a later summary by researchers at Berkeley and Stanford](https://bpl.studentorg.berkeley.edu/docs/92-Expressive%20suppression06.pdf), Ekman's team concluded that the startle is shown by every subject, is easier to elicit than an emotion, can't be fully suppressed, and can't be convincingly faked. People who tried to stifle it looked about the same in the first half second, only slightly weaker.
+
+That later study, by Tim Hagemann, Robert Levenson, and James Gross, added a twist I find delightful. They blasted 252 people with a loud noise. Two groups watched a 20-second countdown first, and one of those groups was told to hide any reaction. The people who tried to suppress their startle showed *more* sympathetic nervous system activation, not less. Keeping a straight face, it seems, costs the body something.
+
+## Your brainstem doesn't wait for permission
+
+The explanation is mostly speed. The core startle reflex runs through a tiny brainstem circuit. In rats, Michael Davis and colleagues [measured it at about 8 milliseconds](https://www.jneurosci.org/content/2/6/791) from the sound to the first twitch in a hind leg, a latency so short that only a handful of synapses can be involved. In humans, researchers measure startle as an eyeblink, and [published guidelines](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-8986.2005.00271.x) score adult blinks that begin roughly 20 to 80 milliseconds after a loud sound. Conscious recognition comes later; an [Open University course](https://www.open.edu/openlearn/health-sports-psychology/health/emotions-and-emotional-disorders/content-section-2.4) puts it at roughly 200 milliseconds, which is a teaching estimate rather than a precise constant.
+
+Those three times sit on one clock.
+
+<StartleTimeline />
+
+The neuroscientist Joseph LeDoux gave this gap its most famous framing. Sensory information can take a "low road" from the thalamus straight to the amygdala, which is fast and crude, or a "high road" through the cortex, which is slower but detailed enough to tell you the thump on the porch was the cat. And LeDoux himself has since sharpened the story in a way that matters here. He now argues that the amygdala [detects threats and triggers the body's defensive responses](https://www.cell.com/current-biology/fulltext/S0960-9822(20)30492-9), while the conscious *feeling* of fear is assembled separately in cortical networks. With psychiatrist Daniel Pine, he calls this a [two-system framework](https://psychiatryonline.org/doi/10.1176/appi.ajp.2016.16030353).
+
+Drawn as a sketch, the two roads look like this.
+
+<RoadsDiagram />
+
+So the flinch and the feeling run on different machinery, which is why you can be unafraid of a plastic skeleton and still jump.
+
+But here is the part that surprised me most. Knowing a scare is coming doesn't merely fail to protect you. It can make the flinch bigger. Davis, Christian Grillon, and colleagues have spent years showing that the amygdala and the neighboring bed nucleus of the stria terminalis [turn up the gain on the startle reflex](https://pmc.ncbi.nlm.nih.gov/articles/PMC2795099/) when an animal or person is anticipating a threat. Your expectation primes the very reflex you hoped it would cancel.
+
+## It's not *whether*, it's *when*
+
+And the kind of uncertainty matters. In Grillon's [NPU-threat test](https://www.nature.com/articles/nprot.2012.001), people sit through safe periods, periods where a signal warns them exactly when an unpleasant stimulus will come, and periods where it can come at any moment. The unpredictable periods produce bigger startles.
+
+The test has three rooms.
+
+<NpuPanels />
+
+A 2018 study by Ken Bennett, Jacqueline Dickmann, and Christine Larson at the University of Wisconsin-Milwaukee [pulled the two kinds of uncertainty apart](https://pmc.ncbi.nlm.nih.gov/articles/PMC6013348/). Volunteers watched a loading bar while waiting for a possible shock. In one condition the shock was certain but its timing was random. In another, the timing was fixed but the shock came only half the time. Uncertainty about *when* produced the strongest startle. Oddly, people *said* both kinds of uncertainty felt equally nerve-racking, so the body and the self-report told somewhat different stories.
+
+The paper ranks those conditions in the text and does not print the blink sizes, so this picture is an order, not a measurement.
+
+<WhenWhether />
+
+<p class="model-note">Illustrative model, not a fitted result.</p>
+
+$$
+S(u) \approx S_0 + k\,u
+$$
+
+A bigger uncertainty about timing lines up with a bigger startle. The baseline and the slope are placeholders, not a fit to the Milwaukee recordings.
+
+That is exactly the situation in a well-decorated front yard. Every trick-or-treater knows something will happen, but nobody knows the moment.
+
+A [2016 study](https://www.nature.com/articles/ncomms10996) by Archy de Berker and colleagues at University College London adds a wrinkle. People's stress, pupil size, and skin conductance tracked how uncertain the next shock was. And the people whose stress tracked uncertainty most closely learned the task best, which makes stress look less like a malfunction and more like a tool for paying attention.
+
+## Why we pay for it
+
+None of this explains why people buy tickets to be frightened. For that, the best evidence comes from inside haunted houses. In a [2020 field study in *Psychological Science*](https://pmc.ncbi.nlm.nih.gov/articles/PMC7734554/), researchers at Aarhus University's Recreational Fear Lab strapped heart-rate monitors on 110 visitors to a haunted attraction. Enjoyment peaked at a moderate level of fear and dropped off when visitors were scared too little or too much. Most participants described the experience as a kind of play.
+
+The shape they describe is the old inverted U.
+
+<FearEnjoyment />
+
+<p class="model-note">Illustrative model, not a fitted result.</p>
+
+$$
+E(f) \approx a - b(f - f^\{\ast\})^2
+$$
+
+Enjoyment is highest around a moderate level of fear and falls away on either side. This is a sketch of that shape, not the quadratic reported by the Aarhus team.
+
+Sociologist Margee Kerr and colleagues [surveyed and recorded EEG from visitors](https://greatergood.berkeley.edu/article/item/how_a_haunted_house_can_make_you_happier) to an adults-only Pittsburgh haunt and found that people left in a better mood, especially those who arrived bored, tired, or stressed. Their [paper in *Emotion*](https://doi.org/10.1037/emo0000470) argues that fear experienced "within the context of safety and control" offers a chance to practice tolerating distress. These visitors chose to be there, so it isn't proof that haunts lift everyone's mood, but the pattern is striking.
+
+## What the flinch teaches about risk
+
+I spend my working days on concept-to-delivery work and security risk and compliance, so I can't read this research without seeing my job in it. What follows are my inferences, not the researchers' claims.
+
+The first lesson is that the fast reaction always arrives before the analysis. When a vulnerability report lands or a project slips, the first feeling in the room is the low road talking. That feeling is information, but it isn't the assessment, and good teams give the high road time to catch up before they commit.
+
+The second lesson concerns timing. Leaders often can't promise that an audit finding or an incident won't happen. But they can usually reduce uncertainty about *when* things will be known and decided. If the startle research generalizes even loosely, a clear timeline may take more strain off people than a reassurance does.
+
+Third, asking people to simply stay calm has a cost. Hagemann's volunteers paid physiologically for hiding their startle. That was a loud noise rather than a tense meeting, but it makes me wary of cultures where nobody is allowed to look worried.
+
+And finally, safe rehearsal works best in the sweet spot. Security teams already run tabletop exercises, and agencies like CISA publish [ready-made scenarios](https://www.cisa.gov/resources-tools/services/cisa-tabletop-exercise-packages) for them. The tabletop exercise is a haunted house for incident response, a place to meet the scare where nothing is actually on fire. The Aarhus data suggest making it hard enough to raise pulses but not so hard that people shut down.
+
+## Notice your own flinch
+
+So this Halloween, when the motion sensor clicks and the skeleton lunges, try to notice the order of events. You'll jump first. A beat later you'll remember that you knew all along, and you'll probably laugh. That small gap between body and mind is one of the oldest things you own, and it deserves a moment of appreciation before you go back to untangling the orange lights.
