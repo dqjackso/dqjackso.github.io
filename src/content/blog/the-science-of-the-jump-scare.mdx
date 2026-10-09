@@ -1,0 +1,103 @@
+---
+title: "The Science of the Jump Scare: Why You Flinch Even When You Know It's Coming"
+description: "A startle can land before you know what you heard. The neuroscience of timing, uncertainty, and why a jump scare still works when you already know it's coming."
+pubDate: 2026-10-06
+tags: ["halloween", "psychology", "neuroscience", "risk", "decision-making", "uncertainty"]
+draft: false
+---
+
+import StartleTimeline from '../../components/scare/StartleTimeline.astro';
+import RoadsDiagram from '../../components/scare/RoadsDiagram.astro';
+import NpuPanels from '../../components/scare/NpuPanels.astro';
+import WhenWhether from '../../components/scare/WhenWhether.astro';
+import FearEnjoyment from '../../components/scare/FearEnjoyment.astro';
+import ModelCard from '../../components/scare/ModelCard.astro';
+
+I'm getting ready to decorate for Halloween, and I keep running into a small puzzle. The whole point of a good decoration is to make someone jump. But the person who jumps most reliably is often the one who knows exactly where the scare is hiding. You know the skeleton is wired to lurch when you walk past it. You know the speaker in the bushes is about to shriek. And your body reacts anyway.
+
+So why do you still jump? Scientists have been firing guns near people for almost a century trying to find out.
+
+## The gun you were warned about
+
+In 1939, the psychologists Carney Landis and William Hunt published *The Startle Pattern*, a catalog of the full-body flinch people make at a gunshot. In a [1985 follow-up](https://pubmed.ncbi.nlm.nih.gov/4078682/), Paul Ekman, Wallace Friesen, and Ronald Simons fired a blank pistol near volunteers, sometimes by surprise and sometimes after telling them exactly when it would go off. They also asked some people to hold perfectly still. According to [a later summary by researchers at Berkeley and Stanford](https://bpl.studentorg.berkeley.edu/docs/92-Expressive%20suppression06.pdf), Ekman's team concluded that the startle is shown by every subject, is easier to elicit than an emotion, still breaks through when people try to hold still, and looks wrong when people try to act it. People who tried to stifle it looked about the same in the first half second, a little weaker.
+
+That later study, by Tim Hagemann, Robert Levenson, and James Gross, added a twist I find delightful. They blasted 252 people with a loud noise. Two groups watched a 20-second countdown first, and one of those groups was told to hide any reaction. The people who tried to suppress their startle showed *more* sympathetic nervous system activation. Keeping a straight face, it seems, costs the body something.
+
+## Your brainstem gets there first
+
+The explanation is mostly speed. The core startle reflex runs through a tiny brainstem circuit. In rats, Michael Davis and colleagues [measured it at about 8 milliseconds](https://www.jneurosci.org/content/2/6/791) from the sound to the first twitch in a hind leg, a latency so short that only a handful of synapses can be involved. In humans, researchers measure startle as an eyeblink, and [published guidelines](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-8986.2005.00271.x) score adult blinks that begin roughly 20 to 80 milliseconds after a loud sound. Conscious recognition comes later; an [Open University course](https://www.open.edu/openlearn/health-sports-psychology/health/emotions-and-emotional-disorders/content-section-2.4) puts it at roughly 200 milliseconds, a rough teaching estimate.
+
+Those three times sit on one clock.
+
+<StartleTimeline />
+
+The neuroscientist Joseph LeDoux gave this gap its most famous framing. Sensory information can take a "low road" from the thalamus straight to the amygdala, which is fast and crude, or a "high road" through the cortex, which is slower but detailed enough to tell you the thump on the porch was the cat. And LeDoux himself has since sharpened the story in a way that matters here. He now argues that the amygdala [detects threats and triggers the body's defensive responses](https://www.cell.com/current-biology/fulltext/S0960-9822(20)30492-9), while the conscious *feeling* of fear is assembled separately in cortical networks. With psychiatrist Daniel Pine, he calls this a [two-system framework](https://psychiatryonline.org/doi/10.1176/appi.ajp.2016.16030353).
+
+Drawn as a sketch, the two roads look like this.
+
+<RoadsDiagram />
+
+So the flinch and the feeling run on different machinery, which is why a plastic skeleton can still make you jump.
+
+But here is the part that surprised me most. Knowing a scare is coming can make the flinch bigger. Davis, Christian Grillon, and colleagues have spent years showing that the amygdala and the neighboring bed nucleus of the stria terminalis [turn up the gain on the startle reflex](https://pmc.ncbi.nlm.nih.gov/articles/PMC2795099/) when an animal or person is anticipating a threat. Your expectation turns that reflex up.
+
+## When matters more than whether
+
+And the kind of uncertainty matters. In Grillon's [NPU-threat test](https://www.nature.com/articles/nprot.2012.001), people sit through safe periods, periods where a signal warns them exactly when an unpleasant stimulus will come, and periods where it can come at any moment. The unpredictable periods produce bigger startles.
+
+The test has three rooms.
+
+<NpuPanels />
+
+A 2018 study by Ken Bennett, Jacqueline Dickmann, and Christine Larson at the University of Wisconsin-Milwaukee [pulled the two kinds of uncertainty apart](https://pmc.ncbi.nlm.nih.gov/articles/PMC6013348/). Volunteers watched a loading bar while waiting for a possible shock. In one condition the shock was certain but its timing was random. In another, the timing was fixed but the shock came only half the time. Uncertainty about *when* produced the strongest startle. Oddly, people *said* both kinds of uncertainty felt equally nerve-racking, so the body and the self-report told somewhat different stories.
+
+The paper ranks those conditions in the text, and the blink sizes live in a figure, so this picture shows the order the study reported.
+
+<WhenWhether />
+
+That is exactly the situation in a well-decorated front yard. Every trick-or-treater knows something will happen, and the moment stays a surprise.
+
+A [2016 study](https://www.nature.com/articles/ncomms10996) by Archy de Berker and colleagues at University College London adds a wrinkle. People's stress, pupil size, and skin conductance tracked how uncertain the next shock was. And the people whose stress tracked uncertainty most closely learned the task best, which makes stress look like a tool for paying attention.
+
+## Why we pay for it
+
+People also buy tickets to be frightened, and the best evidence for why comes from inside haunted houses. In a [2020 field study in *Psychological Science*](https://pmc.ncbi.nlm.nih.gov/articles/PMC7734554/), researchers at Aarhus University's Recreational Fear Lab strapped heart-rate monitors on 110 visitors to a haunted attraction. Enjoyment peaked at a moderate level of fear and fell off toward either end. Most participants described the experience as a kind of play.
+
+The shape they describe is the old inverted U.
+
+<FearEnjoyment />
+
+<ModelCard>
+  <div slot="formula">
+
+$$
+E(f) \approx a - b(f - f^\{\ast\})^2
+$$
+
+  </div>
+
+  <p>Enjoyment, E, peaks at a when fear, f, reaches the sweet spot f*, and b is how fast it falls away from there. The penalty is symmetric and grows with the square of the distance, so being twice as far off the sweet spot costs roughly four times the fun, in a haunt and in a front yard alike.</p>
+</ModelCard>
+
+Sociologist Margee Kerr and colleagues [surveyed and recorded EEG from visitors](https://greatergood.berkeley.edu/article/item/how_a_haunted_house_can_make_you_happier) to an adults-only Pittsburgh haunt and found that people left in a better mood, especially those who arrived bored, tired, or stressed. Their [paper in *Emotion*](https://doi.org/10.1037/emo0000470) argues that fear experienced "within the context of safety and control" offers a chance to practice tolerating distress. These visitors chose to be there, so the pattern describes people who walked in on purpose, and that pattern is striking.
+
+## What I take from it
+
+My body gets there first. The jolt arrives as information, and the account of what it means comes a moment later. So I try to let that first feeling land, and then I give the slower part of me a beat before I decide what it was.
+
+Knowing a hard thing is coming has a weight. But leaving the hour unnamed makes that weight greater, at least for me. When I can name the time, even roughly, the wait has an edge I can see. And the waiting eases.
+
+Trying to hold a calm face costs the body something, as Hagemann's volunteers showed with a loud noise and a countdown. So when the flinch comes, I want to let it show, at least to myself.
+
+A moderate scare, chosen on purpose, is a kind of practice. The haunt studies put the pleasure near the middle of the fear, and that middle is where I want to aim. A skeleton on the porch can be enough, and so can a loud hallway, so long as I can stay with it.
+
+This Halloween, when the motion sensor clicks and the skeleton lunges, I want to catch the order. I'll jump first. A beat later I'll remember that I knew, and I'll probably laugh. That gap between body and mind is old, and it deserves a moment before I go back to the orange lights.
+
+<details class="notes">
+<summary>Notes for the curious</summary>
+
+Bennett, Dickmann, and Larson report the blink sizes in a figure, and the ranking above follows the order in their statistical tests. During the wait, the effect of condition was F(3, 123) = 16.34, p &lt; .0001, partial η² = 0.285. Uncertain timing produced a larger startle than a coin-flip shock, a certain shock, and a safe stretch, each p &lt; .0001. A coin-flip shock was larger than a certain shock, p &lt; .012, and about the same as a safe stretch, p = .44. A certain shock and a safe stretch were about the same, p &gt; .99.
+
+Andersen and colleagues found a curve between fear and enjoyment at three filmed spots: the quadratic term was β = −0.05, SE = 0.02, p = .014. At those spots, enjoyment averaged 5.79 (SD = 2.87) and fear averaged 5.09 (SD = 2.80) on a 0–9 scale, and people remembered the spots 93.8% of the time (N = 110). Their published line is adjusted for other factors, and the printed result is the quadratic term, so this drawing follows the shape they describe.
+
+</details>
