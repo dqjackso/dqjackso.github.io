@@ -1373,7 +1373,7 @@ figcaption,
 
 .stage-ladder li {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(8rem, 0.85fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(7.5rem, 0.8fr);
   gap: 0.75rem 1.25rem;
   align-items: center;
   min-width: 0;
@@ -1453,6 +1453,236 @@ figcaption,
 @media (max-width: 640px) {
   .stage-ladder li {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.risk-time {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.risk-time li {
+  display: grid;
+  grid-template-columns: 7.2rem minmax(0, 1fr);
+  gap: 0.35rem 1rem;
+  align-items: baseline;
+  min-width: 0;
+  padding: 0.85rem 0 0.85rem 1rem;
+  border-left: 3px solid var(--accent);
+}
+
+.risk-when,
+.risk-what,
+.risk-card-kicker,
+.risk-card-copy,
+.risk-cell-name,
+.gate-kicker,
+.gate-name,
+.gate-copy {
+  margin: 0;
+}
+
+.risk-when {
+  color: var(--accent-ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.risk-what {
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.risk-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.risk-card {
+  min-width: 0;
+  padding: 0.85rem 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+}
+
+.risk-card-catch {
+  border-color: color-mix(in srgb, var(--slow) 55%, var(--line));
+  background: color-mix(in srgb, var(--slow) 10%, transparent);
+}
+
+.risk-card-act {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.risk-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.risk-road {
+  fill: none;
+  stroke: currentColor;
+  stroke-opacity: 0.28;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.risk-route {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.risk-route-wait {
+  stroke: var(--slow);
+  stroke-dasharray: 7 7;
+}
+
+.risk-route-done {
+  stroke: var(--accent);
+}
+
+.risk-pin,
+.risk-driver circle {
+  fill: var(--slow);
+}
+
+.risk-driver path {
+  fill: none;
+  stroke: var(--slow);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.risk-car rect,
+.risk-car path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.risk-car circle {
+  fill: var(--accent);
+}
+
+.risk-card-kicker,
+.gate-kicker {
+  color: var(--accent-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.risk-card-catch .risk-card-kicker {
+  color: var(--slow);
+}
+
+.risk-card-copy {
+  margin-top: 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.risk-cell {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.risk-box {
+  display: block;
+  width: var(--grow);
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--line));
+}
+
+.risk-box-top {
+  background: var(--accent);
+}
+
+.risk-cell-name {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.gate-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.gate-row li {
+  min-width: 0;
+  padding: 0.95rem 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--slow) 8%, transparent);
+}
+
+.gate-last {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.gate-name {
+  margin-top: 0.25rem;
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.gate-copy {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+.gate-last .gate-kicker {
+  color: var(--accent-ink);
+}
+
+@media (max-width: 640px) {
+  .risk-time li,
+  .risk-pair,
+  .risk-grid,
+  .gate-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .risk-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
   }
 }
 

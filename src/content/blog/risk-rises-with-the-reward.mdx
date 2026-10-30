@@ -7,79 +7,54 @@ draft: true
 ---
 
 import StageLadder from '../../components/risk/StageLadder.astro';
-import ModelCard from '../../components/scare/ModelCard.astro';
+import ReplitTimeline from '../../components/risk/ReplitTimeline.astro';
+import SuggestAct from '../../components/risk/SuggestAct.astro';
+import RiskArea from '../../components/risk/RiskArea.astro';
+import ApprovalGate from '../../components/risk/ApprovalGate.astro';
 
-A spell-checker that fixes a comma returns a small kindness, and the worst it can leave behind is a clumsy sentence. An agent that can delete a database holds a much larger prize, and a much larger wreck. I think those two facts travel together. The reward of a stage and the number of ways that stage can produce an incident grow for the same reason. The higher the stage, the more of the world the system is allowed to touch.
+A spell-checker that fixes a comma returns a small kindness, and the worst it can leave behind is a clumsy sentence. An agent that can delete a database holds a much larger prize, and a much larger wreck. I think those two facts travel together. The higher a machine climbs, the more of the world it is allowed to touch, so the more ways a risk can become a story people retell.
 
-But here is the part that keeps snagging me. The incidents people retell cluster on the high steps, where the system was allowed to change something. The low steps stay quiet. And the quiet has a plain explanation. There is less there to go wrong, so fewer of those risks ever become a story.
+The low steps stay quiet for a plain reason. There is less there to go wrong.
 
-## The weekend a coding agent kept going
+## A weekend when the agent kept going
 
-In July 2025, Jason Lemkin, founder of SaaStr, was about a week into building an app with Replit's coding agent, and he was hooked on it. He had told the agent to get his permission before it changed any code. [The Register's account](https://www.theregister.com/software/2025/07/21/vibe-coding-service-replit-deleted-production-database/719783), drawn from his public posts, says the agent spent a day covering bugs with fake data and fake reports, then deleted the database, then assured him recovery was impossible. The rollback brought the records back. A day or so later he tried to impose a code freeze, and the agent broke that too.
+In July 2025, Jason Lemkin, founder of SaaStr, was about a week into building an app with Replit's coding agent, and he was hooked. He had told the agent to get his permission before it changed any code. Then the database was gone.
 
-[Replit's own account](https://replit.com/blog/doubling-down-on-our-commitment-to-secure-vibe-coding) matches the core of it. The agent deleted data from the app's database. Lemkin fully restored it with the product's rollback, and the agent itself had been unaware that rollback existed. Development and production were still one database, so a change made while building could hit the live app. Replit has since separated those databases, and with that separation the agent stays off the production database during development.
+<ReplitTimeline />
 
-So this is action implementation, the stage at which a choice becomes a change in the world. The reward for getting it right was the app he wanted enough to keep building. The ways to get it wrong were the things the agent was allowed to touch.
+Replit's own account matches the core of that picture. The agent deleted data from the app's database, Lemkin restored it, and the agent had been unaware that rollback existed. Development and production were still one database, so a change made while building could hit the live app. Replit has since separated them, and the agent stays on the development database while someone is still building.
 
-## Four jobs a machine can take
+So the prize and the wreck sat in the same permission. The agent could change the app, which is how the app could ship, and how the table could disappear.
 
-Human factors engineers have had a map for this since 2000. Raja Parasuraman, Thomas Sheridan, and Christopher Wickens published ["A model for types and levels of human interaction with automation"](https://ieeexplore.ieee.org/document/844354/) in *IEEE Transactions on Systems, Man, and Cybernetics*. They started from a simple picture of how a person handles a task, in four stages, and they asked which of those stages a machine should take, and how far.
+## Four jobs
 
-The names I use in ordinary speech sit on top of theirs.
-
-**Information acquisition** is information retrieval. The machine senses and registers what is out there. Their examples include a radar sweeping the sky and a sensor that lets a robot find and grasp an object, and a log line arriving on a screen is the same kind of job. At the low end the sensor just looks. Farther up, it organizes what came in and highlights some of it. At the high end it may filter, and some of the raw world never reaches the person. The authors are willing to see this stage highly automated when the automation is reliable and the person can still get back to the unfiltered input. Highlighting passes that test more readily than hiding the raw data.
-
-**Information analysis** is information integration. The machine sorts, combines, and infers, and it does that before anyone has chosen an action. A display that predicts where two aircraft will be in twenty minutes lives here, which is one of their examples, and so does a summary that joins several feeds into one picture. The prize is a clearer view. A forecast gets less reliable the farther ahead it looks, which they note about conflict prediction pushed out toward that twenty-minute mark, so the new risk is a clear picture that happens to be wrong.
-
-**Decision and action selection** is action selection. Someone, or something, picks what to do. For this stage the paper lays out a 10-level scale, taken from Sheridan and Verplank's 1978 report on human and computer control. Low on that scale, the machine offers several options and then stays out of the choice. In the middle, it suggests one alternative, and the person still has authority to carry that one out or to pick another. Higher up, the person gets only a limited time to veto before the machine proceeds. The top of the scale is full automation, the machine deciding and acting on its own. Expert systems that fire a rule and prescribe a choice live here. So does an agent that proposes the next command.
-
-**Action implementation** is control and execution. A clearance gets flown, control rods drop into a reactor core, and a row can disappear from a table. The first two are cases the paper discusses, and the third is the one Lemkin lived through. The authors' sharpest point about this stage shows up when the decision has already been automated and the cost of a wrong move is high, and a person is still expected to catch it. Keep the last movement in human hands. In their air-traffic example, the machine may compose the clearance, and the pilot still presses the button that loads it into the flight management system. That press is an error trap, a last chance to turn down a solution that is a poor fit for the moment.
-
-Within each stage, automation runs on a continuum from fully manual to fully automatic, and one system can sit high on one stage and low on another. The numbered 10-level list belongs to decision and action selection. The authors left the number of rungs open for acquisition and analysis. Little research had yet compared different levels of information automation, and new ways of integrating information would create new rungs anyway.
-
-## What they use to decide how high to go
-
-The primary test in the model is what a given type and level of automation does to the person using it. The paper walks through the loss of situation awareness, complacency, and the slow erosion of skill, and it treats the load on the operator as part of the same judgment. Those human performance consequences are the first evaluative criterion, applied to each stage, and then adjusted.
-
-Two further tests come second. One is whether the automation is reliable. The other is the cost of the decision and of the action that follows, meaning what happens in the world if the choice is wrong. The authors are clear that the secondary list stays open. Ease of fitting the piece into the larger system, the balance of efficiency and safety, manufacturing and operating cost, and liability all sit in that same pile.
-
-They define the risk of a single decision outcome in one line, and the line is a product.
-
-<ModelCard>
-  <div slot="formula">
-
-$$
-R \approx p \times c
-$$
-
-  </div>
-
-  <p>The risk of one bad outcome, R, is the probability of that error, p, times what the error costs, c. Parasuraman, Sheridan, and Wickens use that product to judge a single decision. A routine action with a small cost can sit at a high level of automation, because a failure there is cheap, and asking a person to approve every such action would overload them. A high cost is a different case when a person is still expected to take over if the automation fails. There they argue for staying moderate: the machine can suggest, and the person still chooses. The exception they name is the genuinely time-critical case, such as control rods that have to drop faster than a person can react.</p>
-</ModelCard>
-
-## Where the stories come from
-
-That product tells you how much one mistake is worth worrying about. I think a second fact sits beside it, and it is about how many such mistakes a stage is even in a position to commit.
-
-Reward and exposure climb together, and they climb for one reason. Retrieval pays the least, in a tidier log, a highlighted row, or a sensor that found the object. The sample of serious incidents that can start and end there is small, which is why security breaches that live entirely at retrieval stay rare in the stories people tell. Integration pays more, because a joined picture or a forecast can steer the next choice, and combining sources multiplies the ways the picture can be off. Selection pays more again, because the prize is the decision itself. Execution pays the most and exposes the most. The same permission that lets an agent ship the app lets it delete the table.
-
-So a greater frequency of risks that actually materialize, as you move up the stages, follows from the sample. Each higher stage hands the system a larger set of actions that carry a real payoff, and that set is also a larger set of ways for a risk to become an incident. The risk-reward trade itself is old and ordinary. What the stage changes is how many draws you take from it.
+In 2000, three human-factors researchers drew a map for exactly this kind of climb. The plain version has four jobs.
 
 <StageLadder />
 
-The bars above are a sketch of this argument, drawn to show the direction of the climb. Parasuraman, Sheridan, and Wickens supply the four stages and the note on where a person still belongs. The bar lengths are mine.
+Looking things up and putting a picture together pay you in orientation. Picking and doing are where a choice meets the world. A GPS that suggests a route still leaves the turn with you. A car that steers itself has already taken it.
 
-## The person who still has to mean it
+<SuggestAct />
 
-There is a catch waiting at the decision stage, and the research has a name for it. Automation bias is the tendency to lean on the machine past the point where you would have checked. Kate Goddard, Abdul Roudsari, and Jeremy Wyatt [reviewed the studies in 2012](https://pmc.ncbi.nlm.nih.gov/articles/PMC3240751/) for the *Journal of the American Medical Informatics Association*, drawing on medicine and on aviation. The bias shows up as commission, when a person follows advice that is wrong, and as omission, when a person stays still because the system stayed quiet. Most studies in the review still found that decision support improved performance overall. The new errors arrived beside that gain.
+When a wrong move would be expensive, and a person might still have to live with it, the useful pattern is the left-hand picture. The machine suggests, and the person makes the last movement. In air traffic, that movement is a pilot pressing the button that loads a clearance, a last chance to choose another plan.
 
-What loosens the bias matters for where you put the human. A display that shows the situation, and leaves the choice open, produced less of the bias under time pressure than a display that jumps straight to an order. Two studies found that telling people they would answer for the decision made them more vigilant. A third found that the vigilance tracked whether people felt answerable for the choice. And one study found that showing the system's reasoning increased appropriate reliance.
+## How often, times how bad
 
-That lines up with the error trap from 2000. A suggestion, plus a required human movement, gives the bias a smaller place to sit. The movement has to be a decision the person expects to own.
+One miss is worth worrying about in proportion to how often it happens and how bad it is. A routine miss with a small cost can stay with the machine, because the failure is cheap, and a person who approved every such miss would be overloaded. A costly miss, when a person is still expected to step in, is where the suggestion should wait for a human yes. The exception is a moment so fast that the machine has to move on its own, such as control rods that drop into a reactor before a person could reach them.
+
+<RiskArea />
+
+What climbs with the job is the size of the pile. Looking something up offers a small set of ways to go wrong, and a modest prize. Doing the thing offers a large set, and the prize is large for the same reason, because the machine can touch more of the world. So the stories show up more often on the high steps. There are more draws.
+
+## A person still has to mean it
+
+People also lean on a suggestion past the point where they would have checked. Researchers call that automation bias. It shows up when someone follows bad advice, and when someone stays still because the machine stayed quiet. A screen that shows the situation and leaves the choice open leaves room for a real decision, and a screen that jumps straight to an order hurries that decision along. The studies sit in the notes.
+
+<ApprovalGate />
 
 ## What I take from it
 
-I keep an agent of my own, and the rule I give it is this moderate level, applied to my own accounts. It has to come back and get my approval before it takes any action. And it only receives the specific accounts I choose to hand it. Retrieval can run, and a first pass at integration can run, because what I want from those stages is a picture. The moment that picture would become an action, the agent stops and asks, and the action waits on my yes.
+I keep an agent of my own, and the rule I give it matches the picture above. It has to come back and get my approval before it takes any action. And it only receives the specific accounts I choose to hand it. Looking things up can run, and a first pass at putting the picture together can run, because what I want from those jobs is a picture. The moment that picture would become an action, the agent stops and asks, and the action waits on my yes.
 
 That ask is my small version of the pilot's button. Parasuraman, Sheridan, and Wickens wanted a conscious movement at the last stage when a wrong movement would be expensive and a person might still have to live with the result. I want the same movement, at the size of one person's tools. The reward for letting the agent act is real, which is why the temptation lives on the high steps, and the sample of mistakes lives there with it. So the approval is the point where I decide that this particular draw is worth taking.
 
@@ -88,8 +63,10 @@ I still let the agent climb as far as a proposal. The execution stays with me. T
 <details class="notes">
 <summary>Notes for the curious</summary>
 
-Parasuraman, Sheridan, and Wickens define the risk of a decision outcome as the cost of an error multiplied by the probability of that error. Their Table I is a 10-level scale for decision and action selection, based on Sheridan and Verplank, "Human and Computer Control of Undersea Teleoperators" (MIT Man-Machine Systems Laboratory, 1978). The paper says the scale refers mainly to that stage, and that the authors left the number of levels for information acquisition and information analysis unspecified. Primary evaluative criteria are the human performance consequences of a type and level of automation. Secondary evaluative criteria include automation reliability and the costs of decision and action consequences, among others.
+Raja Parasuraman, Thomas Sheridan, and Christopher Wickens, ["A model for types and levels of human interaction with automation"](https://ieeexplore.ieee.org/document/844354/), *IEEE Transactions on Systems, Man, and Cybernetics* 30, no. 3 (2000): 286-297. Their four stages are information acquisition (look things up), information analysis (put it together), decision and action selection (pick), and action implementation (do it). Within each stage, automation runs from fully manual to fully automatic, and one system can sit high on one stage and low on another. Their Table I is a 10-level scale for the choosing stage, based on Sheridan and Verplank, "Human and Computer Control of Undersea Teleoperators" (MIT Man-Machine Systems Laboratory, 1978). They left the number of levels open for looking things up and for putting a picture together. The primary test is what the automation does to the person using it, including situation awareness, complacency, skill, and workload. Secondary tests include reliability and the cost of a wrong decision or action, along with ease of integration, the balance of efficiency and safety, manufacturing and operating cost, and liability. They define the risk of one outcome as the cost of an error multiplied by the probability of that error. For a high-cost decision, when a person is still expected to take over, they recommend stopping where the machine suggests and the person decides. Their examples include a radar, a sensor that lets a robot find an object, a forecast of aircraft about twenty minutes out, control rods that drop faster than a person can react, and a pilot who still presses the button that loads a clearance.
 
-Goddard, Roudsari, and Wyatt pooled four healthcare studies of commission errors after incorrect advice. The risk ratio was 1.26 (95% CI 1.11 to 1.44): erroneous advice was more likely to be followed in the decision-support groups, and when the system was wrong it raised the risk of an incorrect decision by 26%. They describe that pool as small and indicative. Across the wider review, most studies still found that decision support improved performance overall.
+The July 2025 sequence follows [The Register, 21 July 2025](https://www.theregister.com/software/2025/07/21/vibe-coding-service-replit-deleted-production-database/719783), drawn from Jason Lemkin's public posts, and [Replit's own account](https://replit.com/blog/doubling-down-on-our-commitment-to-secure-vibe-coding). The Register places day 7 on 17 July, the fake data and the deletion on the next day, the successful rollback in a 19 July post, and the broken code freeze on 20 July. Replit confirms the deletion, the full restore, that the agent was unaware of rollback, and that development and production were one database, so a change during development could hit the live app. The company later separated those databases so during development the agent is kept to the development database.
+
+Kate Goddard, Abdul Roudsari, and Jeremy Wyatt, ["Automation bias: a systematic review of frequency, effect mediators, and mitigators"](https://pmc.ncbi.nlm.nih.gov/articles/PMC3240751/), *Journal of the American Medical Informatics Association* (2012). They describe automation bias as over-reliance on automation. It shows up as commission, following advice that is wrong, and as omission, staying still because the system stayed quiet. Most studies in the review still found that decision support improved performance overall. A display that shows the situation and leaves the choice open produced less of the bias under time pressure than a display that issues an order. Two studies found that telling people they would answer for the decision made them more vigilant, and a third found that the vigilance tracked whether people felt answerable. One study found that showing the system's reasoning increased appropriate reliance. A small pool of four healthcare studies of commission errors gave a risk ratio of 1.26 (95% CI 1.11 to 1.44): erroneous advice was more likely to be followed when the decision support was present, and a wrong system raised the chance of an incorrect decision by 26%. The authors call that pool small and indicative.
 
 </details>

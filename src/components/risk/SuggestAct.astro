@@ -1,0 +1,39 @@
+<figure class="viz" id="viz-suggest">
+  <p class="chart-title">The same wrong turn</p>
+  <div class="risk-pair">
+    <div class="risk-card risk-card-catch">
+      <svg class="risk-svg" viewBox="0 0 320 150" role="img" aria-labelledby="suggest-title suggest-desc">
+        <title id="suggest-title">A suggestion still waiting</title>
+        <desc id="suggest-desc">A dashed route bends the wrong way, and a person still stands at the wheel.</desc>
+        <path class="risk-road" d="M28 118 H292"></path>
+        <path class="risk-route risk-route-wait" d="M88 118 C 120 118, 140 118, 168 78 S 240 40, 286 40"></path>
+        <circle class="risk-pin" cx="286" cy="40" r="7"></circle>
+        <g class="risk-driver">
+          <circle cx="58" cy="78" r="9"></circle>
+          <path d="M58 88 v18 M58 98 l-12 18 M58 98 l12 18 M46 100 h24"></path>
+        </g>
+      </svg>
+      <p class="risk-card-kicker">Suggest</p>
+      <p class="risk-card-copy">A GPS offers a bad turn. The driver still has the wheel, so the turn stays a choice.</p>
+    </div>
+    <div class="risk-card risk-card-act">
+      <svg class="risk-svg" viewBox="0 0 320 150" role="img" aria-labelledby="act-title act-desc">
+        <title id="act-title">The action already taken</title>
+        <desc id="act-desc">A car has already followed the solid route through the wrong turn.</desc>
+        <path class="risk-road" d="M28 108 H292"></path>
+        <path class="risk-route risk-route-done" d="M36 108 C 90 108, 120 108, 150 70 S 230 36, 270 40"></path>
+        <g class="risk-car" transform="translate(248 22)">
+          <rect x="0" y="16" width="46" height="18" rx="5"></rect>
+          <path d="M10 16 L18 4 H36 L42 16"></path>
+          <circle cx="12" cy="36" r="5"></circle>
+          <circle cx="34" cy="36" r="5"></circle>
+        </g>
+      </svg>
+      <p class="risk-card-kicker">Act</p>
+      <p class="risk-card-copy">The car steers itself through that same turn. The mistake is already on the road.</p>
+    </div>
+  </div>
+  <figcaption>
+    A sketch of one difference. A suggestion still leaves the choice with a person, and an action has already happened.
+  </figcaption>
+</figure>
