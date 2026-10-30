@@ -76,10 +76,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) =>
-        !page.includes('/rss.xml') &&
-        !page.endsWith('/404/') &&
-        !page.includes('/blog/risk-rises-with-the-reward/'),
+      filter: (page) => !page.includes('/rss.xml') && !page.endsWith('/404/'),
     }),
   ],
   markdown: {
